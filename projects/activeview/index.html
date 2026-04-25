@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ActiView is my BA device project: a phone-connected smart display direction for kayaking, biking, travel, and active use."
+    />
+    <title>ActiView | Ivan Kudrenko</title>
+    <link rel="icon" href="../../ActiView_media/logo_preset/Actiview_vertical_logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css?v=20260424-actiview-case-process" />
+    <script src="../../script.js?v=20260424-actiview-case-process" defer></script>
+  </head>
+  <body class="project-page project-page-actiview">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../../index.html#home" aria-label="Ivan Kudrenko home">
+          <span class="brand-mark">
+            <img src="../../BA_logo.svg" alt="BA logo" />
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">Ivan Kudrenko</span>
+            <span class="brand-tag">Founder portfolio</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a class="nav-link" href="../../index.html#home">Home</a>
+          <a class="nav-link" href="../../about/">About</a>
+          <a class="nav-link" href="../../index.html#projects">Projects</a>
+          <a class="nav-link" href="../../index.html#vision">Vision</a>
+          <a class="nav-link" href="../../index.html#contact">Contact</a>
+        </nav>
+
+        <a class="button button-primary header-cta" href="../../index.html#projects">
+          View Projects
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section product-hero" id="overview" data-nav="projects">
+        <div class="container product-hero-grid">
+          <div class="product-hero-copy" data-reveal>
+            <a class="back-link" href="../../index.html#projects">&larr; Back to Projects</a>
+            <span class="section-label">BA Product</span>
+            <div class="product-brand-lockup" aria-hidden="true">
+              <img
+                src="../../ActiView_media/logo_preset/Actiview_writinglogo.svg"
+                alt=""
+              />
+            </div>
+            <h1>ActiView &mdash; your phone's essential info, outside the phone.</h1>
+            <p class="project-page-lead">
+              I started ActiView as a BA device idea for kayaking, biking,
+              travel, and other active situations where the phone is useful, but
+              awkward to handle every few seconds.
+            </p>
+
+            <div class="project-page-meta">
+              <span class="status-pill">Prototype</span>
+              <span class="project-meta-chip">Phone-connected device</span>
+              <span class="project-meta-chip">Experimental BA product</span>
+            </div>
+
+            <div class="product-hero-actions">
+              <a class="button button-primary" href="#how-it-works">See how it works</a>
+              <a class="button button-secondary" href="#case-models">3D case models</a>
+              <a class="button button-secondary" href="#development-gallery">Development gallery</a>
+            </div>
+
+            <p class="project-page-note">
+              What exists today is real prototype work: Raspberry Pi setup,
+              interface tests, phone-connected workflows, and physical display
+              experiments that are already in motion.
+            </p>
+          </div>
+
+          <figure class="hero-media-card surface-card" data-reveal>
+            <img
+              src="../../ActiView_media/IMG_062EFE1A-DBD2-4813-8265-ED63DEE6A2D6.JPEG"
+              alt="ActiView prototype on a desk during an early Raspberry Pi interface bring-up"
+              decoding="async"
+            />
+            <figcaption>One of the early Raspberry Pi interface bring-up tests on the physical prototype.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="problem-section" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Problem</span>
+            <h2>Phones are powerful, but active situations are not built around pulling one out every few seconds.</h2>
+          </div>
+
+          <div class="problem-solution-grid">
+            <article class="detail-card" data-reveal>
+              <p>
+                I kept noticing the same friction point: in a kayak, on a bike,
+                while traveling, or even during normal movement, the phone can
+                hold exactly the information I need, but it is often the wrong
+                device to keep handling in the moment.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <p>
+                Maps, speed, coordinates, weather, music, and simple phone
+                status should not require risking the phone itself. The phone
+                may be in a pocket, bag, or waterproof place for good reason,
+                but then the useful information disappears with it.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solution-section" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Solution</span>
+            <h2>A small external smart screen for active situations.</h2>
+          </div>
+
+          <div class="solution-grid">
+            <div class="solution-copy surface-card" data-reveal>
+              <p>
+                My goal with ActiView is simple: keep the most important
+                information visible on a compact dedicated screen while the
+                phone stays protected.
+              </p>
+              <p>
+                I do not see it as a second phone. I see it as the part of the
+                phone that should stay visible when the full phone should stay
+                out of your hand.
+              </p>
+
+              <div class="solution-tags">
+                <span>Map and location</span>
+                <span>Speed</span>
+                <span>Coordinates</span>
+                <span>Music</span>
+                <span>Phone status</span>
+                <span>Weather</span>
+              </div>
+            </div>
+
+            <figure class="media-story-card surface-card" data-reveal>
+              <img
+                src="../../ActiView_media/camphoto_758783491.JPG"
+                alt="ActiView prototype held in hand during a screen and interface test"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Prototype in hand during one of the early screen tests.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">How It Works</span>
+            <h2>ActiView is built around a phone connection, not around replacing the phone.</h2>
+          </div>
+
+          <div class="detail-grid">
+            <article class="detail-card detail-card-wide" data-reveal>
+              <span class="panel-kicker">Current prototype logic</span>
+              <h2>The phone stays the source. ActiView stays visible.</h2>
+              <p>
+                In the current prototype direction, the phone remains the source
+                of live information and ActiView becomes the dedicated place to
+                surface it. The exact connection layer is still part of the
+                development process, but the direction is already clear: the
+                phone carries the data, and ActiView makes the right part of it
+                easier to see.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">What is already real</span>
+              <h2>Phone-connected prototype flow</h2>
+              <ul class="detail-list">
+                <li>Phone-based location and context are part of the workflow</li>
+                <li>Raspberry Pi experiments drive the current device logic</li>
+                <li>Interface output is being tested on a dedicated screen</li>
+                <li>The goal is quick visibility without constant phone handling</li>
+              </ul>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Where it is going</span>
+              <h2>A cleaner companion relationship</h2>
+              <p>
+                The longer-term idea is a companion device that feels stable,
+                quick to glance at, and clearly connected to the phone without
+                becoming another full-screen distraction.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="who-it-is-for" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Who It Is For</span>
+            <h2>I keep coming back to situations where the phone matters, but should not be the thing I am actively handling.</h2>
+          </div>
+
+          <div class="detail-grid">
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Kayaking</span>
+              <h2>Water, motion, and fast glances</h2>
+              <p>
+                Kayaking is one of the clearest use cases: the phone may need to
+                stay protected, but location, speed, and route awareness still
+                matter in the moment.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Biking</span>
+              <h2>Speed and route visibility</h2>
+              <p>
+                On a bike, ActiView makes more sense as a quick companion view
+                than repeatedly reaching for a larger device.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Travel</span>
+              <h2>Navigation without the full phone ritual</h2>
+              <p>
+                While moving through unfamiliar places, seeing the essential
+                information quickly can matter more than opening the full phone
+                interface again and again.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Everyday active use</span>
+              <h2>Useful beyond one niche</h2>
+              <p>
+                The bigger point is not one sport. It is any situation where the
+                phone holds the answer, but a smaller companion screen would be a
+                better surface for the moment.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features-section" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Features</span>
+            <h2>Focused information, shaped for movement instead of phone handling.</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Live map and GPS position</h3>
+              <p>Quick visibility for location and orientation without digging for the phone.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Speed display</h3>
+              <p>A clean readout for movement-based situations where speed matters at a glance.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Coordinates</h3>
+              <p>Useful location details for navigation, exploration, and route awareness.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Music screen</h3>
+              <p>Basic track information stays visible without forcing the phone into your hand.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Phone status</h3>
+              <p>Important connected-device information can stay accessible on the companion screen.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Weather screen</h3>
+              <p>Helpful conditions and forecast context for movement, travel, and outdoor use.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Compact active-use design</h3>
+              <p>Built around the idea of a small device that fits active situations better than a full phone.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Phone-connected by design</h3>
+              <p>The device depends on the phone, but keeps the right information visible at the right time.</p>
+            </article>
+            <article class="detail-card feature-card" data-reveal>
+              <h3>Built through real experiments</h3>
+              <p>This direction already exists in hardware tests, interface work, and repeated prototype iteration.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product-story" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Product Story</span>
+            <h2>ActiView is a real BA device project, built through experiments instead of imagined from a distance.</h2>
+          </div>
+
+          <div class="development-intro surface-card" data-reveal>
+            <div>
+              <p>
+                ActiView did not start as a polished render. It started as a
+                real irritation and moved into Raspberry Pi setup, display tests,
+                software experiments, phone workflows, physical prototypes, and
+                Shapr3D case modeling.
+              </p>
+              <p>
+                That matters to me. I want this page to show that ActiView is
+                not just an idea I can describe. It is something I have already
+                been trying to make tangible.
+              </p>
+            </div>
+            <div class="development-note">
+              <span class="panel-kicker">BA approach</span>
+              <p>Notice the problem. Build the rough version. Make it more honest from there.</p>
+            </div>
+          </div>
+
+          <div class="development-grid">
+            <figure class="media-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_062EFE1A-DBD2-4813-8265-ED63DEE6A2D6.JPEG"
+                alt="Early ActiView Raspberry Pi display prototype on a desk during bring-up"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Early idea:</strong> bringing the display hardware to life on the desk.</figcaption>
+            </figure>
+
+            <figure class="media-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_266446E4-E7A9-4A78-AE3D-19D253403D55.JPEG"
+                alt="Laptop screen showing Raspberry Pi configuration work for the ActiView display"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Setup:</strong> Raspberry Pi configuration and system work behind the display.</figcaption>
+            </figure>
+
+            <figure class="media-card media-card-ui" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_5532.PNG"
+                alt="Shortcuts settings screen used while shaping the phone-side workflow for ActiView"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Phone workflow:</strong> shaping the shortcut and sharing setup around the connection.</figcaption>
+            </figure>
+
+            <figure class="media-card media-card-ui" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_5598.PNG"
+                alt="Terminal setup for the ActiView autostart configuration"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Software flow:</strong> making the interface boot and behave more like a product.</figcaption>
+            </figure>
+
+            <figure class="media-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_3D412063-AE49-4959-B955-5A5CFE9F8E13.JPEG"
+                alt="ActiView prototype on a desk showing an early map interface without live route values"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Interface testing:</strong> trying the map screen without exposing live route data.</figcaption>
+            </figure>
+
+            <figure class="media-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_48F77E0A-0D2E-490C-A87A-8DBF4DF66F78.JPEG"
+                alt="ActiView hardware prototype on a desk during early electronics testing"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><strong>Hardware exploration:</strong> physical build, wiring, and screen testing in progress.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="case-models" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Case Design</span>
+            <h2>ActiView also has real case iterations, modeled as STL files in Shapr3D.</h2>
+            <p>
+              These models show the physical product direction moving beyond an
+              exposed screen and Raspberry Pi setup. They are working case
+              experiments, not final manufacturing specs.
+            </p>
+          </div>
+
+          <div class="case-process-grid">
+            <figure class="case-process-card surface-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_6309.PNG"
+                alt="Shapr3D workspace showing several ActiView case parts during modeling"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <strong>Modeling workspace:</strong> multiple case pieces being shaped and checked in Shapr3D.
+              </figcaption>
+            </figure>
+
+            <figure class="case-process-card surface-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_6222.PNG"
+                alt="Shapr3D projection and detail work on an ActiView case model"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <strong>Detail work:</strong> refining the case geometry, openings, and physical structure.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="case-models-grid">
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v1%20_screenshot.png?v=20260424-v1-refresh"
+                  alt="Shapr3D screenshot of the first ActiView case model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">01</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">First case model</span>
+                <h3>ActiView case</h3>
+                <p>The first saved STL case direction for moving the prototype toward a more enclosed physical form.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>106 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Activeiw%20case.stl" download="ActiView case.stl">
+                Download STL
+              </a>
+            </article>
+
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v2%20_screenshot.png"
+                  alt="Shapr3D screenshot of the ActiView case v2 model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">02</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">Iteration</span>
+                <h3>ActiView case v2</h3>
+                <p>A second case version from the same modeling process, testing how the device body could evolve.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>109 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Activeiw%20case%20v2.stl" download="ActiView case v2.stl">
+                Download STL
+              </a>
+            </article>
+
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v3%20_screenshot.png"
+                  alt="Shapr3D screenshot of the ActiView case v3 model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">03</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">Iteration</span>
+                <h3>ActiView case v3</h3>
+                <p>A later STL model showing continued shape exploration around the screen and case structure.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>131 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Actiview%20case%20v3.stl" download="ActiView case v3.stl">
+                Download STL
+              </a>
+            </article>
+
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v4%20_screenshot.png"
+                  alt="Shapr3D screenshot of the ActiView case v4 model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">04</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">Iteration</span>
+                <h3>ActiView case v4</h3>
+                <p>A fourth version in the case sequence, keeping the focus on physical fit and product feel.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>126 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Actiview%20case%20v4.stl" download="ActiView case v4.stl">
+                Download STL
+              </a>
+            </article>
+
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v5%20_screenshot.png"
+                  alt="Shapr3D screenshot of the ActiView case v5 model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">05</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">Iteration</span>
+                <h3>ActiView case v5</h3>
+                <p>An additional enclosure experiment, continuing the move from bare prototype toward device design.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>122 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Actiview%20case%20v5.stl" download="ActiView case v5.stl">
+                Download STL
+              </a>
+            </article>
+
+            <article class="case-model-card surface-card" data-reveal>
+              <div class="case-model-visual">
+                <img
+                  src="../../ActiView_media/ActiView_cases3d/Actiview_case_v6%20_screenshot.png"
+                  alt="Shapr3D screenshot of the ActiView case v6 model"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="case-model-version">06</span>
+              </div>
+              <div class="case-model-copy">
+                <span class="panel-kicker">Latest saved model</span>
+                <h3>ActiView case v6</h3>
+                <p>The newest STL file in this case set, ready to be expanded as the physical design gets sharper.</p>
+              </div>
+              <div class="model-meta">
+                <span>STL</span>
+                <span>125 KB</span>
+              </div>
+              <a class="model-link" href="../../ActiView_media/ActiView_cases3d/Actiview%20case%20v6.stl" download="ActiView case v6.stl">
+                Download STL
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="development-gallery" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Gallery</span>
+            <h2>A development archive of prototypes, interface experiments, and physical iterations.</h2>
+            <p>
+              A selected look into the broader ActiView archive, from hardware
+              bring-up to interface and connection testing.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/camphoto_758783491.JPG"
+                alt="ActiView prototype held in hand with a bright test screen"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Prototype in hand</figcaption>
+            </figure>
+
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_6FC129E5-D771-4299-A97A-AFF694B9BF1A.JPEG"
+                alt="ActiView screen on a desk showing an early interface layout"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Interface experiment</figcaption>
+            </figure>
+
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_48F77E0A-0D2E-490C-A87A-8DBF4DF66F78.JPEG"
+                alt="ActiView prototype on a desk during an early display hardware test"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Display hardware test</figcaption>
+            </figure>
+
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_6FC129E5-D771-4299-A97A-AFF694B9BF1A.JPEG"
+                alt="ActiView screen on a desk showing an early map interface without live coordinate values"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Map interface test</figcaption>
+            </figure>
+
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_D273F299-412C-4437-8AA4-6C708D858B25.JPEG"
+                alt="ActiView screen powered on during an early hardware bring-up stage"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Early model</figcaption>
+            </figure>
+
+            <figure class="gallery-card" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_3D412063-AE49-4959-B955-5A5CFE9F8E13.JPEG"
+                alt="ActiView prototype on a desk displaying an early menu interface"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Prototype testing</figcaption>
+            </figure>
+
+            <figure class="gallery-card gallery-card-ui" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_5416.PNG"
+                alt="Raspberry Pi terminal session used during ActiView software setup"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Raspberry Pi bring-up</figcaption>
+            </figure>
+
+            <figure class="gallery-card gallery-card-ui" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_5499.PNG"
+                alt="ActiView display configuration and driver tuning on Raspberry Pi"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Display configuration tuning</figcaption>
+            </figure>
+
+            <figure class="gallery-card gallery-card-ui gallery-card-screen" data-reveal>
+              <img
+                src="../../ActiView_media/IMG_5500.PNG"
+                alt="Raspberry Pi settings screen used while configuring part of the ActiView workflow"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Workflow setup step</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark" data-nav="projects">
+        <div class="container">
+          <div class="vision-card" data-reveal>
+            <span class="section-label section-label-light">Vision</span>
+            <blockquote>
+              "ActiView is not here to replace the phone. It is here to make
+              the phone more useful when the phone itself is not convenient."
+            </blockquote>
+            <p>
+              ActiView fits into my larger BA vision of creating devices that
+              make technology more personal and more practical instead of simply
+              adding another screen for the sake of it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="current-status" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Current Status</span>
+            <h2>Real development work, still in prototype stage.</h2>
+          </div>
+
+          <div class="status-grid">
+            <article class="detail-card detail-card-wide" data-reveal>
+              <p>
+                ActiView is still a prototype direction, but it is already
+                grounded in real experiments instead of vague product language.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">What is real today</span>
+              <h2>Work already underway</h2>
+              <ul class="detail-list">
+                <li>Physical display prototypes</li>
+                <li>Raspberry Pi experiments</li>
+                <li>Phone-connected workflows</li>
+                <li>Interface testing and iteration</li>
+                <li>Shapr3D case models and STL iterations</li>
+                <li>Hardware exploration and refinement</li>
+              </ul>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">What I am not claiming</span>
+              <h2>Still honest about the stage</h2>
+              <p>
+                ActiView is not being presented here as a finished product or a
+                final spec sheet. It is a serious prototype direction that is
+                still being developed.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label">Roadmap</span>
+            <h2>The next goal is not more hype. It is a sharper, more believable device.</h2>
+          </div>
+
+          <div class="detail-grid">
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Next prototype goals</span>
+              <h2>Make the device feel more product-like</h2>
+              <p>
+                I want the next iterations to improve interface clarity, device
+                stability, the companion workflow, and the overall feeling that
+                this is becoming a coherent product.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Use-case refinement</span>
+              <h2>Stay focused on real scenarios</h2>
+              <p>
+                Kayaking, biking, travel, and active movement remain the best
+                way to test whether the product direction is actually useful or
+                only interesting in theory.
+              </p>
+            </article>
+
+            <article class="detail-card detail-card-wide" data-reveal>
+              <span class="panel-kicker">Longer-term idea</span>
+              <h2>A BA companion device that earns its place beside the phone.</h2>
+              <p>
+                The future version of ActiView should feel like a clear,
+                practical companion: a device you can trust for essential
+                information, without asking it to become another general-purpose
+                screen.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="actview-cta" data-nav="projects">
+        <div class="container">
+          <div class="contact-card cta-panel" data-reveal>
+            <div class="contact-copy">
+              <span class="section-label">Next</span>
+              <h2>Follow where ActiView goes next.</h2>
+              <p>
+                Explore BA, review the gallery, or reach out if you want to talk
+                about the product direction.
+              </p>
+            </div>
+
+            <div class="contact-actions">
+              <a class="button button-secondary" href="../ba/">Back to BA</a>
+              <a class="button button-primary" href="mailto:ivan.d.kudrenko@gmail.com?subject=ActiView">
+                Email Me
+              </a>
+              <a class="button button-secondary" href="#development-gallery">See development gallery</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Ivan Kudrenko</p>
+        <p>BA, apps, devices, and product ideas for the future.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Dependencies and package managers
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.vercel/
+.netlify/
+
+# Coverage, caches, and temp files
+coverage/
+.cache/
+.parcel-cache/
+.sass-cache/
+.eslintcache
+tmp/
+temp/
+*.tmp
+*.temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+# Local-only configs and editor files
+.vscode/
+.idea/
+*.local
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local-only media excluded by the publish audit
+site_media/
+YouTube_media/
+
+BlinkClip_media/*.png
+BlinkClip_media/logo_preset/blinkclip-favicon-64.png
+
+ActiView_media/*.PNG
+ActiView_media/*.JPG
+ActiView_media/*.jpg
+ActiView_media/*.JPEG
+ActiView_media/*.HEIC
+ActiView_media/*.heic
+ActiView_media/logo_preset/Actiview_horizontal_logo.svg
+
+!ActiView_media/IMG_5416.PNG
+!ActiView_media/IMG_5499.PNG
+!ActiView_media/IMG_5598.PNG
+!ActiView_media/IMG_5793.PNG
+!ActiView_media/IMG_5797.PNG
+!ActiView_media/camphoto_758783491.JPG
+!ActiView_media/IMG_062EFE1A-DBD2-4813-8265-ED63DEE6A2D6.JPEG
+!ActiView_media/IMG_073F1D79-0D04-4FCA-AC55-E0C904168B2D.JPEG
+!ActiView_media/IMG_266446E4-E7A9-4A78-AE3D-19D253403D55.JPEG
+!ActiView_media/IMG_3D412063-AE49-4959-B955-5A5CFE9F8E13.JPEG
+!ActiView_media/IMG_48F77E0A-0D2E-490C-A87A-8DBF4DF66F78.JPEG
+!ActiView_media/IMG_5F12F67A-F802-45A4-B4A2-58C023D8DD10.JPEG
+!ActiView_media/IMG_6FC129E5-D771-4299-A97A-AFF694B9BF1A.JPEG
+!ActiView_media/IMG_91515E50-5868-49EB-B6AD-4B713B3181F9.JPEG
+!ActiView_media/IMG_D273F299-412C-4437-8AA4-6C708D858B25.JPEG
+!ActiView_media/IMG_F30DAF55-2F58-46A0-AE2A-98B34603FD80.JPEG
+!ActiView_media/logo_preset/Actiview_vertical_logo.svg
+!ActiView_media/logo_preset/Actiview_writinglogo.svg
+
+!BlinkClip_media/logo_preset/favicon.svg

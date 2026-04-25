@@ -48,8 +48,8 @@ pnpm-debug.log*
 Thumbs.db
 
 # Local-only media excluded by the publish audit
-site_media/
-YouTube_media/
+site_media/*
+YouTube_media/*
 
 BlinkClip_media/*.png
 BlinkClip_media/logo_preset/blinkclip-favicon-64.png
@@ -78,7 +78,11 @@ ActiView_media/logo_preset/Actiview_horizontal_logo.svg
 !ActiView_media/IMG_91515E50-5868-49EB-B6AD-4B713B3181F9.JPEG
 !ActiView_media/IMG_D273F299-412C-4437-8AA4-6C708D858B25.JPEG
 !ActiView_media/IMG_F30DAF55-2F58-46A0-AE2A-98B34603FD80.JPEG
+!ActiView_media/ActiView_previewcard.png
 !ActiView_media/logo_preset/Actiview_vertical_logo.svg
 !ActiView_media/logo_preset/Actiview_writinglogo.svg
 
+!BlinkClip_media/BlinkClip_previewcard.png
 !BlinkClip_media/logo_preset/favicon.svg
+!site_media/BA_previewcard.png
+!YouTube_media/YouTube_previewcard.png

@@ -5,6 +5,8 @@ const navLinks = [...document.querySelectorAll(".nav-link")];
 const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
 const revealItems = document.querySelectorAll("[data-reveal]");
 const trackedSections = [...document.querySelectorAll("section[id], header[id]")];
+const isRootSectionsPage = Boolean(document.getElementById("home"));
+let lastSyncedHash = window.location.hash || "";
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -38,6 +40,11 @@ homeLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
 
+    if (window.location.hash !== "#home") {
+      history.replaceState(null, "", "#home");
+      lastSyncedHash = "#home";
+    }
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -53,6 +60,16 @@ homeLinks.forEach((link) => {
 const updateHeaderState = () => {
   if (!header) return;
   header.classList.toggle("scrolled", window.scrollY > 18);
+};
+
+const syncSectionHash = (sectionId) => {
+  if (!isRootSectionsPage || !sectionId) return;
+
+  const nextHash = `#${sectionId}`;
+  if (window.location.hash === nextHash && lastSyncedHash === nextHash) return;
+
+  history.replaceState(null, "", nextHash);
+  lastSyncedHash = nextHash;
 };
 
 const updateActiveNavLink = () => {
@@ -82,6 +99,8 @@ const updateActiveNavLink = () => {
     const isActive = href === `#${currentId}` || href.endsWith(`#${currentId}`);
     link.classList.toggle("active", isActive);
   });
+
+  syncSectionHash(currentId);
 };
 
 updateHeaderState();

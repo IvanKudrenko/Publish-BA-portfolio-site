@@ -48,6 +48,7 @@ pnpm-debug.log*
 Thumbs.db
 
 # Local-only media excluded by the publish audit
+ActiView_media/Actiview_Presentation.pptx
 site_media/*
 YouTube_media/*
 
@@ -64,9 +65,14 @@ ActiView_media/logo_preset/Actiview_horizontal_logo.svg
 
 !ActiView_media/IMG_5416.PNG
 !ActiView_media/IMG_5499.PNG
+!ActiView_media/IMG_5500.PNG
+!ActiView_media/IMG_5532.PNG
 !ActiView_media/IMG_5598.PNG
 !ActiView_media/IMG_5793.PNG
 !ActiView_media/IMG_5797.PNG
+!ActiView_media/IMG_5973.JPG
+!ActiView_media/IMG_6222.PNG
+!ActiView_media/IMG_6309.PNG
 !ActiView_media/camphoto_758783491.JPG
 !ActiView_media/IMG_062EFE1A-DBD2-4813-8265-ED63DEE6A2D6.JPEG
 !ActiView_media/IMG_073F1D79-0D04-4FCA-AC55-E0C904168B2D.JPEG

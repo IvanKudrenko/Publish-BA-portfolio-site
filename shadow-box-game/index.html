@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Box</title>
+  <link rel="stylesheet" href="style.css?v=20260516-8">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="mainMenu" class="screen menu-screen">
+      <h1 class="sr-only">Shadow Box</h1>
+      <img class="menu-logo" src="new logo.svg" alt="Shadow Box">
+      <div class="menu-art" aria-hidden="true">
+        <img class="menu-light" src="light source.svg" alt="">
+        <img class="menu-star menu-star-left" src="star.svg" alt="">
+        <img class="menu-star menu-star-top" src="star.svg" alt="">
+        <img class="menu-star menu-star-right" src="star.svg" alt="">
+        <img class="menu-player" src="main sprite.svg" alt="">
+      </div>
+      <div class="menu-actions" aria-label="Main menu">
+        <button id="playButton" class="primary-button icon-play" type="button">Play</button>
+        <button id="levelSelectButton" type="button">Levels</button>
+        <button id="customLevelsButton" type="button">Custom Levels</button>
+        <button id="communityLevelsButton" type="button">Community Levels</button>
+        <button id="builderButton" type="button">Level Builder</button>
+      </div>
+      <button id="settingsButton" class="settings-button" type="button">
+        <img class="settings-icon" src="setting symbol.svg" alt="" aria-hidden="true">
+        <span>Settings.</span>
+      </button>
+    </section>
+
+    <div id="settingsOverlay" class="settings-overlay" hidden>
+      <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="settings-panel-header">
+          <div>
+            <p class="eyebrow">Game options</p>
+            <h2 id="settingsTitle">Settings</h2>
+          </div>
+          <button id="settingsCloseButton" class="settings-close-button" type="button" aria-label="Close settings">×</button>
+        </div>
+
+        <div class="settings-list">
+          <label class="setting-row" for="motionToggle">
+            <span>
+              <strong>Motion Effects</strong>
+              <small>Stars, hazards, light pulse, and menu animation.</small>
+            </span>
+            <input id="motionToggle" type="checkbox">
+          </label>
+
+          <label class="setting-row" for="touchToggle">
+            <span>
+              <strong>Swipe Controls</strong>
+              <small>Drag left or right to move, swipe up to jump.</small>
+            </span>
+            <input id="touchToggle" type="checkbox">
+          </label>
+
+          <label class="setting-row" for="hintsToggle">
+            <span>
+              <strong>Level Hints</strong>
+              <small>Show the short hint when a level starts.</small>
+            </span>
+            <input id="hintsToggle" type="checkbox">
+          </label>
+        </div>
+
+        <div class="settings-actions">
+          <button id="fullscreenButton" type="button">Fullscreen</button>
+          <button id="resetProgressButton" class="danger-text-button" type="button">Reset Progress</button>
+        </div>
+        <p id="settingsMessage" class="panel-message" aria-live="polite"></p>
+      </section>
+    </div>
+
+    <section id="levelSelect" class="screen" hidden>
+      <div class="screen-header">
+        <button class="back-button" data-screen="mainMenu" type="button">Back</button>
+        <div>
+          <p class="eyebrow">Built-in collection</p>
+          <h2>Select Level</h2>
+        </div>
+      </div>
+      <nav class="level-tabs" aria-label="Level categories">
+        <button class="level-tab" data-screen="levelSelect" type="button">Built-in Levels</button>
+        <button class="level-tab" data-screen="customLevels" type="button">My Levels</button>
+        <button class="level-tab" data-screen="communityLevels" type="button">Community Levels</button>
+      </nav>
+      <div id="levelGrid" class="level-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" hidden>
+      <div class="game-toolbar">
+        <button id="gameBackButton" class="back-button" type="button">Level Select</button>
+        <button id="restartButton" class="icon-again" type="button">Restart</button>
+      </div>
+      <section class="game-frame" aria-label="Shadow Box game">
+        <canvas id="game" width="420" height="700">
+          Your browser does not support the canvas element.
+        </canvas>
+        <div id="hud" class="hud" aria-live="polite">Level: 1/10 Stars: 0/3</div>
+        <div id="message" class="message" aria-live="polite"></div>
+        <div id="overlay" class="overlay" hidden>
+          <div class="overlay-panel">
+            <div id="overlayBadge" class="overlay-badge" aria-hidden="true">★</div>
+            <p id="overlayKicker" class="overlay-kicker">Level 1</p>
+            <h2 id="overlayTitle">Game Over</h2>
+            <p id="overlayReason">You fell.</p>
+            <div id="overlayActions" class="overlay-actions"></div>
+            <p id="overlayPrompt" class="overlay-prompt">Press R to try again</p>
+          </div>
+        </div>
+      </section>
+      <p class="instructions">
+        Move with A/D or arrows. Jump with Space/W/Up. Collect stars with the shadow, then reach the door. Press R to restart.
+      </p>
+    </section>
+
+    <section id="levelBuilder" class="screen builder-screen" hidden>
+      <div class="screen-header">
+        <button class="back-button" data-screen="mainMenu" type="button">Back</button>
+        <div>
+          <p class="eyebrow">Custom tools</p>
+          <h2>Level Builder</h2>
+        </div>
+      </div>
+      <div class="builder-layout">
+        <div class="builder-canvas-wrap">
+          <canvas id="builderCanvas" width="420" height="700"></canvas>
+        </div>
+        <aside class="builder-panel">
+          <label class="field-label" for="customLevelName">Level name</label>
+          <input id="customLevelName" type="text" maxlength="40" value="My Level">
+
+          <div class="tool-grid" aria-label="Builder tools">
+            <button class="tool-button is-active" data-tool="select" type="button">Select</button>
+            <button class="tool-button" data-tool="playerStart" type="button">Player Start</button>
+            <button class="tool-button" data-tool="light" type="button">Light</button>
+            <button class="tool-button" data-tool="platform" type="button">Platform</button>
+            <button class="tool-button" data-tool="star" type="button">Star</button>
+            <button class="tool-button" data-tool="door" type="button">Door</button>
+            <button class="tool-button" data-tool="hazard" type="button">Hazard</button>
+            <button class="tool-button" data-tool="shadowDanger" type="button">Shadow Danger</button>
+            <button class="tool-button" data-tool="movingPlatform" type="button">Moving Platform</button>
+            <button class="tool-button" data-tool="delete" type="button">Delete</button>
+          </div>
+
+          <label class="field-label" for="platformSize">Platform size</label>
+          <select id="platformSize">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+          </select>
+
+          <div class="builder-actions">
+            <button id="testLevelButton" type="button">Test Level</button>
+            <button id="saveLevelButton" class="primary-button" type="button">Save Level</button>
+            <button id="publishLevelButton" class="publish-button" type="button">Publish</button>
+            <button id="clearBuilderButton" type="button">Clear</button>
+          </div>
+          <p id="builderMessage" class="panel-message" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="customLevels" class="screen" hidden>
+      <div class="screen-header">
+        <button class="back-button" data-screen="mainMenu" type="button">Back</button>
+        <div>
+          <p class="eyebrow">Saved creations</p>
+          <h2>Custom Levels</h2>
+        </div>
+      </div>
+      <nav class="level-tabs" aria-label="Level categories">
+        <button class="level-tab" data-screen="levelSelect" type="button">Built-in Levels</button>
+        <button class="level-tab" data-screen="customLevels" type="button">My Levels</button>
+        <button class="level-tab" data-screen="communityLevels" type="button">Community Levels</button>
+      </nav>
+      <div id="customLevelList" class="custom-list"></div>
+      <div class="import-panel">
+        <h3>Import / Export JSON</h3>
+        <textarea id="importExportText" spellcheck="false" placeholder="Paste custom level JSON here"></textarea>
+        <div class="inline-actions">
+          <button id="importJsonButton" type="button">Import JSON</button>
+          <input id="importFileInput" type="file" accept="application/json,.json">
+        </div>
+        <p id="customMessage" class="panel-message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="communityLevels" class="screen" hidden>
+      <div class="screen-header">
+        <button class="back-button" data-screen="mainMenu" type="button">Back</button>
+        <div>
+          <p class="eyebrow">Shared creations</p>
+          <h2>Community Levels</h2>
+        </div>
+      </div>
+      <nav class="level-tabs" aria-label="Level categories">
+        <button class="level-tab" data-screen="levelSelect" type="button">Built-in Levels</button>
+        <button class="level-tab" data-screen="customLevels" type="button">My Levels</button>
+        <button class="level-tab" data-screen="communityLevels" type="button">Community Levels</button>
+      </nav>
+      <div id="communityLevelList" class="custom-list community-list" aria-live="polite"></div>
+      <div class="import-panel community-info-panel">
+        <h3>Static Community Pack</h3>
+        <p>Levels here are loaded from the local community manifest and use the same JSON format exported by Level Builder.</p>
+        <div class="inline-actions">
+          <button id="refreshCommunityButton" type="button">Refresh List</button>
+        </div>
+        <p id="communityMessage" class="panel-message" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="community-config.js?v=20260516-8"></script>
+  <script src="game.js?v=20260516-8"></script>
+</body>
+</html>

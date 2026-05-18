@@ -1,0 +1,76 @@
+{
+  "id": "low-signal",
+  "name": "Low Signal",
+  "hint": "Cast left from each ledge, then return to the purple door.",
+  "playerStart": {
+    "x": 72,
+    "y": 607
+  },
+  "light": {
+    "x": 318,
+    "y": 360,
+    "radius": 430
+  },
+  "platforms": [
+    {
+      "x": 36,
+      "y": 620,
+      "width": 145,
+      "height": 12
+    },
+    {
+      "x": 224,
+      "y": 620,
+      "width": 160,
+      "height": 12
+    },
+    {
+      "x": 70,
+      "y": 560,
+      "width": 115,
+      "height": 12
+    },
+    {
+      "x": 190,
+      "y": 430,
+      "width": 145,
+      "height": 12
+    },
+    {
+      "x": 52,
+      "y": 300,
+      "width": 115,
+      "height": 12
+    }
+  ],
+  "stars": [
+    {
+      "x": 44,
+      "y": 595,
+      "r": 13
+    },
+    {
+      "x": 69,
+      "y": 521,
+      "r": 13
+    },
+    {
+      "x": 26,
+      "y": 257,
+      "r": 13
+    }
+  ],
+  "door": {
+    "x": 330,
+    "y": 563
+  },
+  "hazards": [],
+  "shadowDangerZones": [
+    {
+      "x": 360,
+      "y": 512,
+      "r": 18
+    }
+  ],
+  "movingPlatforms": []
+}

@@ -1,0 +1,28 @@
+{
+  "levels": [
+    {
+      "id": "mirror-steps",
+      "name": "Mirror Steps",
+      "author": "Shadow Box Team",
+      "difficulty": "Easy",
+      "description": "A gentle staircase with a long side cast and a bright edge star.",
+      "file": "mirror-steps.json"
+    },
+    {
+      "id": "low-signal",
+      "name": "Low Signal",
+      "author": "Shadow Box Team",
+      "difficulty": "Medium",
+      "description": "The light sits high to the right, pulling the shadow into tighter left-side pickups.",
+      "file": "low-signal.json"
+    },
+    {
+      "id": "underlit-lift",
+      "name": "Underlit Lift",
+      "author": "Shadow Box Team",
+      "difficulty": "Medium",
+      "description": "A moving platform gives the shadow a sharper angle from below.",
+      "file": "underlit-lift.json"
+    }
+  ]
+}

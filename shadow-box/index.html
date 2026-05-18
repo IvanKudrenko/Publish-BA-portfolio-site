@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Play Shadow Box, a minimalist puzzle-platformer where your shadow collects the stars. Use light and shadow to open the door and clear each level."
+    />
+    <title>Shadow Box | Ivan Kudrenko</title>
+    <link rel="icon" href="../shadow-box-game/star.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css?v=20260517-shadow-box" />
+    <script src="../script.js?v=20260425-home-hash-fix" defer></script>
+  </head>
+  <body class="project-page project-page-shadow-box">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html#home" aria-label="Ivan Kudrenko home">
+          <span class="brand-mark">
+            <img src="../BA_logo.svg" alt="BA logo" />
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">Ivan Kudrenko</span>
+            <span class="brand-tag">Founder portfolio</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a class="nav-link" href="../index.html#home">Home</a>
+          <a class="nav-link" href="../about/">About</a>
+          <a class="nav-link" href="../index.html#projects">Projects</a>
+          <a class="nav-link" href="../index.html#vision">Vision</a>
+          <a class="nav-link" href="../index.html#contact">Contact</a>
+        </nav>
+
+        <a class="button button-primary header-cta" href="#play">
+          Play
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section project-page-hero shadow-box-hero" id="overview" data-nav="projects">
+        <div class="container project-page-grid">
+          <div class="project-page-copy" data-reveal>
+            <a class="back-link" href="../index.html#projects">&larr; Back to Projects</a>
+            <span class="section-label">Browser Game</span>
+            <h1>Shadow Box</h1>
+            <p class="project-page-lead">
+              A minimalist puzzle-platformer where your shadow collects the stars.
+            </p>
+
+            <div class="project-page-meta">
+              <span class="status-pill">Playable now</span>
+              <span class="project-meta-chip">Puzzle-platformer</span>
+              <span class="project-meta-chip">Light and shadow</span>
+              <span class="project-meta-chip">Keyboard-first</span>
+            </div>
+
+            <p class="project-page-note">
+              A white light source casts your shadow away from the player. Move
+              closer to the light to make the shadow longer and stronger, guide
+              that shadow through the stars, then reach the door once the path
+              is open.
+            </p>
+
+            <div class="project-page-actions">
+              <a class="button button-primary shadow-box-play-button" href="#play">
+                Play Shadow Box
+              </a>
+              <a
+                class="button button-secondary"
+                href="https://github.com/IvanKudrenko/shadow-box"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="shadow-box-hero-preview" aria-hidden="true" data-reveal>
+            <img
+              class="shadow-box-preview-logo"
+              src="../shadow-box-game/new logo.svg"
+              alt=""
+            />
+            <img
+              class="shadow-box-preview-light"
+              src="../shadow-box-game/light source.svg"
+              alt=""
+            />
+            <img
+              class="shadow-box-preview-star shadow-box-preview-star-one"
+              src="../shadow-box-game/star.svg"
+              alt=""
+            />
+            <img
+              class="shadow-box-preview-star shadow-box-preview-star-two"
+              src="../shadow-box-game/star.svg"
+              alt=""
+            />
+            <img
+              class="shadow-box-preview-player"
+              src="../shadow-box-game/main sprite.svg"
+              alt=""
+            />
+            <span class="shadow-box-preview-shadow"></span>
+            <span class="shadow-box-preview-platform"></span>
+            <span class="shadow-box-preview-door"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shadow-box-feature-section" data-nav="projects">
+        <div class="container">
+          <div class="detail-grid">
+            <article class="detail-card detail-card-wide" data-reveal>
+              <span class="panel-kicker">Core Mechanic</span>
+              <h2>The player does not collect stars directly. The shadow does.</h2>
+              <p>
+                Every level is built around the relationship between the player,
+                the light, and the shadow. Position yourself near the light to
+                stretch the shadow into places the player cannot safely reach.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Light</span>
+              <h2>A white source defines the whole puzzle</h2>
+              <p>
+                The light casts the shadow away from the player. Distance
+                matters: closer movement creates a longer, stronger shadow.
+              </p>
+            </article>
+
+            <article class="detail-card" data-reveal>
+              <span class="panel-kicker">Goal</span>
+              <h2>Collect the stars, then reach the door</h2>
+              <p>
+                The shadow gathers stars while the player navigates platforms,
+                hazards, and timing. Once the stars are collected, the door
+                becomes the exit.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shadow-box-play-section" id="play" data-nav="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <span class="section-label section-label-light">Play</span>
+            <h2>Play Shadow Box in the browser.</h2>
+            <p>Best played with keyboard.</p>
+          </div>
+
+          <div class="shadow-box-game-shell" data-reveal>
+            <iframe
+              class="shadow-box-game-frame"
+              src="../shadow-box-game/"
+              title="Playable Shadow Box game"
+              loading="eager"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-downloads"
+              allow="fullscreen"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Ivan Kudrenko</p>
+        <p>Shadow Box, BA, apps, devices, and product ideas for the future.</p>
+      </div>
+    </footer>
+  </body>
+</html>

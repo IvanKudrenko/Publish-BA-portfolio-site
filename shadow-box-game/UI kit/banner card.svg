@@ -1,0 +1,10 @@
+<svg width="176" height="204" viewBox="0 0 176 204" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="0.5" y="0.5" width="175" height="203" rx="14.5" fill="black" fill-opacity="0.7" stroke="#FFA375"/>
+<rect width="176" height="204" rx="15" fill="url(#pattern0_16_156)" fill-opacity="0.7"/>
+<defs>
+<pattern id="pattern0_16_156" patternUnits="userSpaceOnUse" patternTransform="matrix(18.34 0 0 18.34 87.5 101.5)" preserveAspectRatio="none" viewBox="0 0 1834 1834" width="1" height="1">
+<g id="pattern0_16_156_inner">
+<rect width="100" height="100" rx="50" fill="#FF5500"/>
+</g>
+</pattern></defs>
+</svg>

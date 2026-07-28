@@ -1877,8 +1877,7 @@ svg {
 
 .product-brand-lockup img {
   width: clamp(170px, 26vw, 220px);
-  filter: grayscale(1) brightness(0.08);
-  opacity: 0.92;
+  opacity: 1;
 }
 
 .solution-grid {

@@ -4661,8 +4661,8 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
 }
 
 .home-page .hero-photo {
-  width: min(760px, 60vw);
-  margin: 0 -8vw 16px -4vw;
+  width: min(720px, 57vw);
+  margin: 0 -8vw 48px -4vw;
 }
 
 .about-page .project-page-hero {
@@ -4822,7 +4822,7 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   }
 
   .home-page .hero-photo {
-    width: min(700px, 62vw);
+    width: min(660px, 59vw);
     margin-right: -14vw;
   }
 
@@ -4880,8 +4880,8 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   }
 
   .home-page .hero-photo {
-    width: min(590px, 132vw);
-    margin: 30px -29vw 12px -9vw;
+    width: min(560px, 126vw);
+    margin: 30px -29vw 32px -9vw;
   }
 
   .about-page .project-page-hero {
@@ -4971,8 +4971,8 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   display: block;
   max-width: 100%;
   height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 92%, rgba(0, 0, 0, 0.78) 95%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 92%, rgba(0, 0, 0, 0.78) 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 80%, rgba(0, 0, 0, 0.88) 86%, rgba(0, 0, 0, 0.55) 92%, rgba(0, 0, 0, 0.18) 97%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 80%, rgba(0, 0, 0, 0.88) 86%, rgba(0, 0, 0, 0.55) 92%, rgba(0, 0, 0, 0.18) 97%, transparent 100%);
 }
 
 .home-page .story-cutout img {

@@ -2,11 +2,14 @@ const header = document.querySelector(".site-header");
 const nav = document.querySelector(".site-nav");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = [...document.querySelectorAll(".nav-link")];
+const navDestinations = [...document.querySelectorAll(".site-nav a")];
+const projectMenus = [...document.querySelectorAll(".nav-projects")];
 const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
 const revealItems = document.querySelectorAll("[data-reveal]");
 const trackedSections = [...document.querySelectorAll("section[id], header[id]")];
 const isRootSectionsPage = Boolean(document.getElementById("home"));
 let lastSyncedHash = window.location.hash || "";
+let sectionTrackingReady = false;
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -14,10 +17,11 @@ if (navToggle && nav) {
     navToggle.setAttribute("aria-expanded", String(isOpen));
   });
 
-  navLinks.forEach((link) => {
+  navDestinations.forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
+      projectMenus.forEach((menu) => menu.removeAttribute("open"));
     });
   });
 
@@ -25,6 +29,7 @@ if (navToggle && nav) {
     if (event.key === "Escape") {
       nav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
+      projectMenus.forEach((menu) => menu.removeAttribute("open"));
     }
   });
 
@@ -35,6 +40,14 @@ if (navToggle && nav) {
     }
   });
 }
+
+document.addEventListener("click", (event) => {
+  projectMenus.forEach((menu) => {
+    if (!menu.contains(event.target)) {
+      menu.removeAttribute("open");
+    }
+  });
+});
 
 homeLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
@@ -47,7 +60,7 @@ homeLinks.forEach((link) => {
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: "auto",
     });
 
     if (nav && navToggle) {
@@ -63,7 +76,7 @@ const updateHeaderState = () => {
 };
 
 const syncSectionHash = (sectionId) => {
-  if (!isRootSectionsPage || !sectionId) return;
+  if (!isRootSectionsPage || !sectionId || !sectionTrackingReady) return;
 
   const nextHash = `#${sectionId}`;
   if (window.location.hash === nextHash && lastSyncedHash === nextHash) return;
@@ -96,7 +109,11 @@ const updateActiveNavLink = () => {
 
   navLinks.forEach((link) => {
     const href = link.getAttribute("href") || "";
-    const isActive = href === `#${currentId}` || href.endsWith(`#${currentId}`);
+    const trackedId = link.dataset.section || "";
+    const isActive =
+      trackedId === currentId ||
+      href === `#${currentId}` ||
+      href.endsWith(`#${currentId}`);
     link.classList.toggle("active", isActive);
   });
 
@@ -104,7 +121,28 @@ const updateActiveNavLink = () => {
 };
 
 updateHeaderState();
-updateActiveNavLink();
+
+requestAnimationFrame(() => {
+  const initialSection = window.location.hash
+    ? document.getElementById(window.location.hash.slice(1))
+    : null;
+
+  if (initialSection) {
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    const headerOffset = (header?.offsetHeight || 72) + 8;
+    window.scrollTo(0, Math.max(0, initialSection.offsetTop - headerOffset));
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+  }
+
+  updateActiveNavLink();
+  sectionTrackingReady = true;
+});
+
+const navigationEntry = performance.getEntriesByType("navigation")[0];
+if (!window.location.hash && navigationEntry?.type !== "back_forward") {
+  window.scrollTo(0, 0);
+}
 
 window.addEventListener("scroll", () => {
   updateHeaderState();

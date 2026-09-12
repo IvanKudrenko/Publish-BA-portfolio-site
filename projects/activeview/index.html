@@ -9,20 +9,15 @@
     />
     <title>ActiView | Ivan Kudrenko</title>
     <link rel="icon" href="../../BA_new_favicon.svg?v=20260728-2" type="image/svg+xml" />
-    <link rel="stylesheet" href="../../styles.css?v=20260729-actiview-refresh" />
-    <script src="../../script.js?v=20260425-home-hash-fix" defer></script>
+    <link rel="stylesheet" href="../../styles.css?v=20260912-final-polish" />
+    <script src="../../script.js?v=20260912-corrections-4" defer></script>
   </head>
   <body class="project-page project-page-actiview">
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="../../index.html#home" aria-label="Ivan Kudrenko home">
-          <span class="brand-mark">
-            <img src="../../BA_new_logo.svg" alt="BA logo" />
-          </span>
-          <span class="brand-copy">
-            <span class="brand-name">Ivan Kudrenko</span>
-            <span class="brand-tag">Founder portfolio</span>
-          </span>
+          <span class="brand-mark"><img src="../../BA_new_logo.svg" alt="BA" /></span>
+          <span class="brand-name">Ivan Kudrenko</span>
         </a>
 
         <button
@@ -38,16 +33,20 @@
         </button>
 
         <nav class="site-nav" id="site-nav" aria-label="Primary">
-          <a class="nav-link" href="../../index.html#home">Home</a>
+          <details class="nav-projects">
+            <summary class="nav-link projects-summary active" data-section="projects">Projects <span aria-hidden="true">⌄</span></summary>
+            <div class="projects-menu">
+              <a href="./"><span>ActiView</span><small>Prototype</small></a>
+              <a href="../blinkclip/"><span>BlinkClip</span><small>macOS utility</small></a>
+              <a href="../../shadow-box/"><span>Shadow Box</span><small>Playable game</small></a>
+              <a href="../ba/"><span>BA</span><small>Identity</small></a>
+              <a href="../youtube/"><span>YouTube</span><small>Videos & process</small></a>
+            </div>
+          </details>
+          <a class="nav-link" href="../../index.html#story">Story</a>
           <a class="nav-link" href="../../about/">About</a>
-          <a class="nav-link" href="../../index.html#projects">Projects</a>
-          <a class="nav-link" href="../../index.html#vision">Vision</a>
           <a class="nav-link" href="../../index.html#contact">Contact</a>
         </nav>
-
-        <a class="button button-primary header-cta" href="../../index.html#projects">
-          View Projects
-        </a>
       </div>
     </header>
 

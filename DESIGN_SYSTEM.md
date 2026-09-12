@@ -70,6 +70,7 @@ These rules are mandatory across the entire website. They are not suggestions. D
 - Every decorative choice must solve a specific problem. Do not add a gradient, shadow, border, rounded container, chip, badge, icon tile, glow, panel, or floating element merely to make a section look designed.
 - Reject generic startup, SaaS, agency, and vibe-coded portfolio patterns. Avoid repeated card grids, equal icon tiles, fake manifestos, dark gradient slogan cards, decorative blue/purple gradients, repeated eyebrow/heading/paragraph formulas, pill clouds, unjustified bento layouts, glass effects, floating islands, generic inspirational quotes, and over-polished AI copy.
 - Ground sections in Ivan's real photography, products, artifacts, typography, BA identity, and authentic content.
+- Story headlines must explain why a moment matters, what changed, or how it connects to the next stage. Never use a Story headline merely to describe what the photograph already shows.
 - Never invent a quote, slogan, philosophy, personal statement, or manifesto for Ivan. AI may translate, simplify, correct, or shorten Ivan's words without changing their meaning.
 - Approved authentic statements are “I build things.” and “I have more ideas than I build.” Additional slogans require Ivan's explicit approval.
 

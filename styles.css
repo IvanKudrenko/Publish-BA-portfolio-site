@@ -4972,8 +4972,10 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   display: block;
   max-width: 100%;
   height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.96) 66%, rgba(0, 0, 0, 0.82) 72%, rgba(0, 0, 0, 0.58) 80%, rgba(0, 0, 0, 0.3) 88%, rgba(0, 0, 0, 0.1) 95%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.96) 66%, rgba(0, 0, 0, 0.82) 72%, rgba(0, 0, 0, 0.58) 80%, rgba(0, 0, 0, 0.3) 88%, rgba(0, 0, 0, 0.1) 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .home-page .story-cutout img {

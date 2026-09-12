@@ -4662,7 +4662,7 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
 
 .home-page .hero-photo {
   width: min(760px, 60vw);
-  margin: 0 -8vw -1px -4vw;
+  margin: 0 -8vw 16px -4vw;
 }
 
 .about-page .project-page-hero {
@@ -4881,7 +4881,7 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
 
   .home-page .hero-photo {
     width: min(590px, 132vw);
-    margin: 30px -29vw -1px -9vw;
+    margin: 30px -29vw 12px -9vw;
   }
 
   .about-page .project-page-hero {
@@ -4971,8 +4971,8 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   display: block;
   max-width: 100%;
   height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 97%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 92%, rgba(0, 0, 0, 0.78) 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 92%, rgba(0, 0, 0, 0.78) 95%, transparent 100%);
 }
 
 .home-page .story-cutout img {

@@ -4958,3 +4958,246 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
     font-size: 17px;
   }
 }
+
+/* ================================================================
+   BA geometry and anti-template compliance pass.
+   ================================================================ */
+
+.projects-menu {
+  border-radius: 12px;
+}
+
+.home-page .hero-photo img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 97%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 97%, transparent 100%);
+}
+
+.home-page .story-cutout img {
+  object-fit: contain;
+  background: #ffffff;
+}
+
+body.project-page:not(.project-page-shadow-box) .surface-card,
+body.project-page:not(.project-page-shadow-box) .detail-card,
+body.project-page:not(.project-page-shadow-box) .hero-media-card,
+body.project-page:not(.project-page-shadow-box) .media-story-card,
+body.project-page:not(.project-page-shadow-box) .media-card,
+body.project-page:not(.project-page-shadow-box) .gallery-card,
+body.project-page:not(.project-page-shadow-box) .case-process-card,
+body.project-page:not(.project-page-shadow-box) .case-model-card,
+body.project-page:not(.project-page-shadow-box) .detail-hero-shell,
+body.project-page:not(.project-page-shadow-box) .contact-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body.project-page:not(.project-page-shadow-box) .detail-card,
+body.project-page:not(.project-page-shadow-box) .contact-card {
+  padding: 24px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.project-page:not(.project-page-shadow-box) .detail-card:hover,
+body.project-page:not(.project-page-shadow-box) .hero-media-card:hover,
+body.project-page:not(.project-page-shadow-box) .media-story-card:hover,
+body.project-page:not(.project-page-shadow-box) .media-card:hover,
+body.project-page:not(.project-page-shadow-box) .gallery-card:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  transform: none;
+}
+
+body.project-page:not(.project-page-shadow-box) .detail-grid,
+body.project-page:not(.project-page-shadow-box) .problem-solution-grid,
+body.project-page:not(.project-page-shadow-box) .status-grid {
+  gap: 0 48px;
+}
+
+body.project-page:not(.project-page-shadow-box) .project-page-lead,
+body.project-page:not(.project-page-shadow-box) .project-page-note,
+body.project-page:not(.project-page-shadow-box) .section-heading p,
+body.project-page:not(.project-page-shadow-box) .detail-card p,
+body.project-page:not(.project-page-shadow-box) .detail-list {
+  max-width: 64ch;
+}
+
+.project-page-actiview .hero-media-card,
+.project-page-actiview .media-story-card,
+.project-page-actiview .media-card,
+.project-page-actiview .gallery-card,
+.project-page-actiview .case-process-card {
+  display: block;
+  padding: 0;
+}
+
+.project-page-actiview .hero-media-card img,
+.project-page-actiview .media-story-card img,
+.project-page-actiview .media-card img,
+.project-page-actiview .gallery-card img,
+.project-page-actiview .case-process-card img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.project-page-actiview .hero-media-card figcaption,
+.project-page-actiview .media-story-card figcaption,
+.project-page-actiview .media-card figcaption,
+.project-page-actiview .gallery-card figcaption,
+.project-page-actiview .case-process-card figcaption {
+  margin-top: 8px;
+}
+
+.project-page-actiview .solution-copy,
+.project-page-actiview .development-intro,
+.project-page-actiview .development-note {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.project-page-actiview .solution-tags {
+  display: block;
+  margin-top: 24px;
+}
+
+.project-page-actiview .solution-tags span {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.project-page-actiview .solution-tags span:not(:last-child)::after {
+  content: " · ";
+  color: #8a8a90;
+}
+
+.project-page-actiview .feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: stretch;
+  gap: 0 48px;
+}
+
+.project-page-actiview .feature-card {
+  padding: 24px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-page-actiview .case-model-card {
+  padding: 0;
+}
+
+.project-page-actiview .case-model-card::after {
+  display: none;
+}
+
+.project-page-actiview .case-model-visual {
+  border: 0;
+  border-radius: 8px;
+  background: #f5f5f7;
+}
+
+.project-page-actiview .case-model-version,
+.project-page-actiview .model-meta span {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.project-page-actiview .model-meta {
+  gap: 16px;
+}
+
+.project-page-actiview .model-link {
+  min-height: 44px;
+  border-radius: 8px;
+}
+
+.about-text-link {
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.about-hero-portrait img,
+.about-history figure img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.about-hero-portrait figcaption,
+.about-history figcaption {
+  margin-top: 8px;
+}
+
+@media (max-width: 820px) {
+  .about-page .about-hero-grid,
+  .about-history-moment,
+  .about-history-moment:nth-child(even),
+  .about-history-copy,
+  .about-history figure {
+    min-width: 0;
+  }
+
+  .about-hero-portrait img {
+    width: min(320px, 82vw);
+    height: auto;
+  }
+
+  .about-history-moment,
+  .about-history-moment:nth-child(even) {
+    gap: 24px;
+  }
+
+  .about-history-copy,
+  .about-history-moment:nth-child(even) .about-history-copy {
+    order: 1;
+  }
+
+  .about-history figure,
+  .about-history-moment:nth-child(even) figure {
+    order: 2;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .about-history-early figure {
+    width: min(78%, 320px);
+  }
+
+  .about-history figure img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  body.project-page:not(.project-page-shadow-box) .detail-grid,
+  body.project-page:not(.project-page-shadow-box) .problem-solution-grid,
+  body.project-page:not(.project-page-shadow-box) .status-grid,
+  .project-page-actiview .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

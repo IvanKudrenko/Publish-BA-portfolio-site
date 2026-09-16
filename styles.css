@@ -4661,8 +4661,11 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
 }
 
 .home-page .hero-photo {
+  position: relative;
   width: min(660px, 53vw);
+  aspect-ratio: 3167 / 1866;
   margin: 0 -8vw 128px -4vw;
+  overflow: hidden;
 }
 
 .about-page .project-page-hero {
@@ -4969,13 +4972,13 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
 }
 
 .home-page .hero-photo img {
+  position: absolute;
+  inset: 0 auto auto 0;
   display: block;
-  max-width: 100%;
+  width: 127.31%;
+  max-width: none;
   height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 100%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  transform: translate(-4.47%, -6.94%);
 }
 
 .home-page .story-cutout img {

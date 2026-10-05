@@ -5212,6 +5212,13 @@ body.project-page-shadow-box .projects-menu a:focus-visible {
   overflow: hidden;
 }
 
+@media (min-width: 1051px) {
+  .home-page .hero-photo {
+    align-self: center;
+    margin-bottom: 0;
+  }
+}
+
 .about-page .project-page-hero {
   min-height: min(860px, 100svh);
   padding-bottom: 0;

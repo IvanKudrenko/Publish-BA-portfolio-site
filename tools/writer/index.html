@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>BA Writer</title>
+    <link rel="icon" href="/BA_new_favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/blog/blog.css">
+    <link rel="stylesheet" href="/writer/editor.css">
+    <script src="/writer/editor.js" defer></script>
+  </head>
+  <body class="writer-page">
+    <main class="writer-shell">
+      <header class="writer-topbar">
+        <a class="writer-brand" href="/" aria-label="BA home"><img src="/BA_new_logo.svg" alt="BA"><span>Writer</span></a>
+        <div class="writer-save-state" id="save-state" role="status" aria-live="polite">Connecting…</div>
+        <a class="writer-view-blog" href="/blog/" target="_blank" rel="noopener">View Blog ↗</a>
+      </header>
+
+      <section class="writer-login" id="login" hidden>
+        <h1>BA Writer</h1>
+        <p>Enter the local password shown by the Writer launcher.</p>
+        <form id="login-form"><label for="password">Writer password</label><input id="password" type="password" autocomplete="current-password" required><button class="primary-button">Open Writer</button></form>
+      </section>
+
+      <div id="workspace" hidden>
+        <aside class="writer-library" id="library">
+          <div class="library-heading"><p>BA Writer</p><h1>Writing</h1></div>
+          <div class="new-writing-actions" aria-label="Start writing">
+            <button type="button" id="new-post"><strong>New Post</strong><span>Share a thought, link, or photos.</span></button>
+            <button type="button" id="new-article"><strong>New Article</strong><span>Build a longer structured story.</span></button>
+          </div>
+          <div class="library-group"><h2>Drafts</h2><div id="draft-list"></div></div>
+          <div class="library-group"><h2>Published</h2><div id="published-list"></div></div>
+        </aside>
+
+        <section class="writer-editor" id="editor" aria-label="Editor">
+          <div class="editor-topline">
+            <button type="button" class="quiet-button" id="back-library">← Writing</button>
+            <div class="mode-switch" aria-label="Content format"><button type="button" data-mode="post" aria-pressed="true">Post</button><button type="button" data-mode="article" aria-pressed="false">Article</button></div>
+            <div class="view-switch" aria-label="Editor view"><button type="button" data-view="write" aria-pressed="true">Write</button><button type="button" data-view="preview" aria-pressed="false">Preview</button></div>
+          </div>
+
+          <form id="content-form">
+            <div id="post-composer" class="post-composer">
+              <label class="sr-only" for="post-text">What's on your mind?</label>
+              <textarea id="post-text" placeholder="What’s on your mind?" rows="8"></textarea>
+              <div id="post-original-wrap" class="optional-composer" hidden><label for="post-original">Original thought · preserved exactly</label><textarea id="post-original" rows="4" spellcheck="false"></textarea></div>
+              <div id="post-link-wrap" class="optional-composer" hidden><label for="post-link">Link</label><input id="post-link" type="url" inputmode="url" placeholder="https://"></div>
+              <div id="post-media" class="media-grid"></div>
+              <div class="composer-tools">
+                <button type="button" data-photo>Add photo</button>
+                <button type="button" id="add-original">Original Thought</button>
+                <button type="button" id="add-link">Link</button>
+                <button type="button" id="open-settings">More</button>
+              </div>
+            </div>
+
+            <div id="article-composer" class="article-composer" hidden>
+              <label class="sr-only" for="article-title">Title</label><textarea id="article-title" rows="1" placeholder="Title"></textarea>
+              <label class="sr-only" for="article-subtitle">Subtitle</label><textarea id="article-subtitle" rows="1" placeholder="Subtitle (optional)"></textarea>
+              <div id="cover-slot"></div>
+              <div class="article-cover-tools"><button type="button" data-photo data-target="cover">Add cover</button></div>
+              <div id="blocks" class="block-list"></div>
+              <div class="add-block-wrap"><button type="button" id="add-block">＋ Add block</button><div id="block-menu" class="block-menu" hidden></div></div>
+            </div>
+
+            <section id="settings" class="writer-settings" hidden aria-labelledby="settings-title">
+              <div class="settings-heading"><h2 id="settings-title">Settings</h2><button type="button" id="close-settings" aria-label="Close settings">Done</button></div>
+              <div class="settings-grid">
+                <label>Custom title <input id="setting-title" placeholder="Automatic for Posts"></label>
+                <label>Custom slug <input id="setting-slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="Generated automatically"></label>
+                <label class="settings-wide">Custom excerpt <textarea id="setting-description" rows="3" placeholder="Generated automatically"></textarea></label>
+                <label>Tags <input id="setting-tags" placeholder="design, phones"></label>
+                <label>Publication date <input id="setting-date" type="date"></label>
+                <label>SEO title <input id="setting-seo-title"></label>
+                <label class="settings-wide">SEO description <textarea id="setting-seo-description" rows="2"></textarea></label>
+              </div>
+              <details><summary>History</summary><div id="history" class="history-list"></div></details>
+              <div class="danger-actions"><button type="button" id="unpublish">Unpublish</button><button type="button" id="delete">Delete draft</button></div>
+            </section>
+
+            <section id="preview" class="writer-preview" hidden aria-label="Production preview"></section>
+            <div class="publish-bar"><span id="publish-progress"></span><button type="button" id="publish" class="primary-button">Publish</button></div>
+          </form>
+        </section>
+      </div>
+      <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif" multiple hidden>
+    </main>
+  </body>
+</html>

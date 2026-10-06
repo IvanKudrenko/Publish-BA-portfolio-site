@@ -1,0 +1,66 @@
+#!/bin/zsh
+set -eu
+
+APP_MACOS_DIR="${0:A:h}"
+REPO_DIR="${APP_MACOS_DIR:h:h:h}"
+PRIVATE_DIR="$REPO_DIR/.blog-private"
+SECRET_FILE="$PRIVATE_DIR/writer-secret"
+LOG_FILE="$PRIVATE_DIR/writer.log"
+START_COMMAND="$PRIVATE_DIR/start-writer.command"
+PORT="8787"
+
+mkdir -p "$PRIVATE_DIR"
+if [[ ! -s "$SECRET_FILE" ]]; then
+  /usr/bin/python3 -c 'import secrets; print(secrets.token_urlsafe(24))' > "$SECRET_FILE"
+  chmod 600 "$SECRET_FILE"
+fi
+WRITER_SECRET="$(<"$SECRET_FILE")"
+
+show_error() {
+  /usr/bin/osascript - "$1" <<'APPLESCRIPT'
+on run argv
+  display dialog (item 1 of argv) buttons {"OK"} default button "OK" with icon stop
+end run
+APPLESCRIPT
+}
+
+if ! /usr/bin/curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1; then
+  PORT_PIDS="$(/usr/sbin/lsof -tiTCP:$PORT -sTCP:LISTEN 2>/dev/null || true)"
+  if [[ -n "$PORT_PIDS" ]]; then
+    for PORT_PID in ${(f)PORT_PIDS}; do
+      PORT_COMMAND="$(/bin/ps -p "$PORT_PID" -o command= 2>/dev/null || true)"
+      if [[ "$PORT_COMMAND" == *"tools/blog.py serve"* ]]; then
+        /bin/kill "$PORT_PID" 2>/dev/null || true
+      else
+        show_error "BA Writer could not start because another app is using local port $PORT. Close that app and try again."
+        exit 1
+      fi
+    done
+    sleep 1
+  fi
+
+  : > "$LOG_FILE"
+  {
+    print '#!/bin/zsh'
+    print "cd ${(q)REPO_DIR}"
+    print "nohup /usr/bin/python3 ${(q)REPO_DIR}/tools/blog.py serve --push >> ${(q)LOG_FILE} 2>&1 &"
+  } > "$START_COMMAND"
+  chmod 700 "$START_COMMAND"
+
+  # macOS denies a background Python child direct access to a Desktop-hosted
+  # repository. Terminal already has that user-granted access on this Mac.
+  /usr/bin/open -gj -a Terminal "$START_COMMAND"
+  for _ in {1..80}; do
+    /usr/bin/curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1 && break
+    sleep 0.25
+  done
+fi
+
+if /usr/bin/curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1; then
+  ENCODED_SECRET="$(/usr/bin/python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$WRITER_SECRET")"
+  /usr/bin/open "http://127.0.0.1:$PORT/writer/?token=$ENCODED_SECRET"
+else
+  LAST_ERROR="$(/usr/bin/tail -n 8 "$LOG_FILE" 2>/dev/null || true)"
+  [[ -n "$LAST_ERROR" ]] || LAST_ERROR="No server response was received."
+  show_error "BA Writer could not start.\n\n$LAST_ERROR\n\nDetails: $LOG_FILE"
+fi

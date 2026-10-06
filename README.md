@@ -42,3 +42,7 @@ You can deploy this site to any static host, including GitHub Pages:
 
 - Replace `YOUR_EMAIL_HERE` in the contact links with a public email address before launch.
 - Review the ignored local-only media in `.gitignore` if you later decide to publish additional assets.
+
+## Blog
+
+Public blog: `/blog/`. Double-click `BA Writer.app` for private local authoring, or run `python3 tools/blog.py serve --push` and open `http://127.0.0.1:8787/writer/`. See [BLOG.md](BLOG.md) for publishing, security, media, recovery, and deployment details.

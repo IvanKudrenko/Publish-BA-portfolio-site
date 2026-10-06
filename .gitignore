@@ -92,3 +92,7 @@ ActiView_media/logo_preset/Actiview_horizontal_logo.svg
 !BlinkClip_media/logo_preset/favicon.svg
 !site_media/BA_previewcard.png
 !YouTube_media/YouTube_previewcard.png
+
+# Private writer drafts and Python cache
+.blog-private/
+__pycache__/

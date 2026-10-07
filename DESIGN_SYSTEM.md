@@ -6,6 +6,46 @@ This file implements the intent in `DESIGN.md`. When the two differ, `DESIGN.md`
 
 These rules are mandatory across the entire website. They are not suggestions. Do not knowingly introduce components that violate them.
 
+## Locked visual direction
+
+- BA uses one cohesive direction: restrained personal editorial design, informed by late-2000s through mid-2010s Apple-like typographic restraint and made specific through BA identity.
+- Photography, typography, and real work are the visual system. The site must feel personal, precise, quiet, thoughtful, product-focused, and human-designed.
+- Preserve the current font family until Ivan approves a separate typography change. Apply hierarchy through scale, weight, contrast, spacing, and composition.
+- Visual consistency is part of correctness. A page must not invent its own local design language.
+- If a future request appears to require breaking a locked rule, preserve the system and ask Ivan before creating the exception.
+
+## Color and hierarchy law
+
+- **Black = meaning.** Use black or near-black for primary headings, meaningful content, and important project names.
+- **Pale gray = context.** Use pale gray for years, editorial context, and secondary non-interactive information. Essential body copy, captions, and navigation must remain crisp and readable.
+- **BA blue = action.** Use BA blue primarily for links, active navigation, focus, and meaningful interactive states. Never use blue merely to make metadata look designed.
+- Aim for one primary focal point and at most one strong supporting focal point in a viewport. Do not make every element demand equal attention.
+
+## Story laws
+
+- Every Story year is large, thin, pale gray, editorial, and part of the composition.
+- Never render a Story year as tiny blue text, a small uppercase label, a badge, a pill, a chip, or eyebrow metadata.
+- Do not use tiny blue uppercase labels such as “My Story,” “Selected Work,” “Early Years,” “Currently,” or “Featured” above headings. If context is needed, use large pale-gray editorial type, normal secondary text, whitespace, or composition. Removing an eyebrow does not require replacing it with another label.
+- Story copy must add meaning that is not already visible in the photograph: why the moment matters, what changed, or how it connects to the next stage.
+- Story language stays short, human, factual, personal, and specific. Entries do not need identical text structures.
+- Preserve these approved directions: “It started with phones.”, “Ideas started becoming projects.”, “I started putting it into videos.”, “I started explaining my ideas.”, and “ActiView, presented.”
+
+## Anti-template hard failures
+
+- Reject purple, indigo, or cyan decorative gradients; neon glows; gradient blobs; glass effects; floating islands; generic centered badge/headline/two-button heroes; generic bento grids; repeated feature-card grids; emoji UI icons; sparkle or magic-wand branding; faux terminals; floating beta pills; fake metrics; fake users; fake uptime; fake testimonials; and startup or founder language Ivan did not say.
+- Reject repeated icon-tile, slogan, and paragraph groups; decorative pill clouds; huge rounded cards; shadow-heavy premium surfaces; AI-written manifesto cards; fake inspirational quotes; and low-contrast body text.
+- A card, border, radius, shadow, gradient, chip, badge, icon tile, background panel, animation, or decorative element must solve a clear problem. If its only justification is that it makes the page look more designed, remove it.
+- No card without a reason. No pill without semantic meaning. No shadow without real layering. No decorative gradient without function.
+- Ordinary metadata stays plain text. Text must never merely narrate a photo. Never invent an Ivan quote, slogan, philosophy, founder statement, or BA manifesto.
+- For every major section, ask whether it could be copied unchanged into another AI-generated portfolio. If so, ground it in Ivan’s real photography, projects, artifacts, writing, BA identity, typography, spacing, or composition.
+- Anti-template restraint must not make the site sterile. Personality comes from Ivan, the BA logo, BA blue, photography, projects, artifacts, history, asymmetry, composition, and typography.
+
+## Micro-interactions
+
+- Prefer subtle opacity or color changes, simple transitions, visible focus states, and restrained image response.
+- Avoid bouncing, floating, magnetic controls, cursor-follow effects, 3D tilt, excessive springs, and animated gradients.
+- Motion must clarify interaction rather than perform for attention, and it must respect `prefers-reduced-motion`.
+
 ## Spacing grid and proximity
 
 - Use 4px for micro adjustments and 8px as the primary spacing rhythm.

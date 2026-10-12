@@ -14,6 +14,7 @@ SITE_URL = "https://baproj.com"
 RESERVED = {"write", "index", "assets", "feed", "blog"}
 IMAGE_TYPES = {"image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp", "image/gif": ".gif", "image/heic": ".heic", "image/heif": ".heif"}
 BLOCK_TYPES = {"paragraph", "heading", "quote", "original-thought", "callout", "divider", "code", "image", "gallery", "embed", "columns", "spacer", "html"}
+SUPPORTED_TRANSLATIONS = {"uk"}
 E = html.escape
 
 def now(): return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -22,7 +23,12 @@ def parse_date(value):
     try: parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError: parsed = dt.datetime.combine(dt.date.fromisoformat(value), dt.time(), dt.timezone.utc)
     return parsed if parsed.tzinfo else parsed.replace(tzinfo=dt.timezone.utc)
-def display_date(value): return parse_date(value).strftime("%B %d, %Y").replace(" 0", " ")
+def display_date(value, lang="en"):
+    parsed = parse_date(value)
+    if lang == "uk":
+        months = ("січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня")
+        return f"{parsed.day} {months[parsed.month - 1]} {parsed.year}"
+    return parsed.strftime("%B %d, %Y").replace(" 0", " ")
 def slugify(value): return re.sub(r"^-|-$", "", re.sub(r"[^a-z0-9]+", "-", value.lower().encode("ascii", "ignore").decode()))[:96]
 def strip_md(value):
     value = re.sub(r"!\[[^]]*\]\([^)]*\)", "", value)
@@ -113,9 +119,11 @@ def image_html(record, media_id, layout="normal", caption="", alt="", preview=Fa
     else: image = f'<img src="{E(item.get("publicPath", "#"), quote=True)}" alt="{E(alt, quote=True)}" loading="lazy">'
     return f'<figure class="content-image image-{layout}">{image}{f"<figcaption>{E(caption)}</figcaption>" if caption else ""}</figure>'
 
-def original(value): return f'<aside class="original-thought"><h2>Original thought</h2><div>{E(value)}</div></aside>' if value else ""
+def original(value, lang="en"):
+    label = "Оригінальна думка" if lang == "uk" else "Original thought"
+    return f'<aside class="original-thought"><h2>{label}</h2><div>{E(value)}</div></aside>' if value else ""
 
-def block_html(record, block, preview=False):
+def block_html(record, block, preview=False, lang="en"):
     kind = block.get("type", "paragraph")
     if kind == "paragraph": return f'<div class="prose-block">{markdown(block.get("text", ""))}</div>'
     if kind == "heading":
@@ -124,7 +132,7 @@ def block_html(record, block, preview=False):
     if kind == "quote":
         citation = f'<cite>{E(block.get("caption", ""))}</cite>' if block.get("caption") else ""
         return f'<blockquote class="article-quote"><p>{inline(block.get("text", ""))}</p>{citation}</blockquote>'
-    if kind == "original-thought": return original(block.get("text", ""))
+    if kind == "original-thought": return original(block.get("text", ""), lang)
     if kind == "callout": return f'<aside class="article-callout"><p>{inline(block.get("text", ""))}</p></aside>'
     if kind == "divider": return "<hr>"
     if kind == "spacer": return '<div class="article-spacer" aria-hidden="true"></div>'
@@ -147,24 +155,52 @@ def reading_time(record):
     text = record.get("text", "") + " " + record.get("originalThought", "") + " ".join(str(b.get("text", "")) for b in record.get("blocks", []))
     return max(1, round(len(text.split()) / 220))
 
-def entry_html(record, preview=False, adjacent=(None, None)):
+def localized_record(record, lang="en"):
+    if lang == "en": return record
+    translated = record.get("translations", {}).get(lang, {})
+    localized = dict(record)
+    for key in ("title", "subtitle", "description", "text", "originalThought", "link", "blocks", "tags", "seo"):
+        if key in translated: localized[key] = translated[key]
+    localized["language"] = lang
+    return localized
+
+def locale_url(record, lang="en"):
+    suffix = "" if lang == "en" else f"{lang}/"
+    return f'{SITE_URL}/blog/{record["slug"]}/{suffix}'
+
+def language_switch(record, lang):
+    if not record.get("translations"): return ""
+    links = []
+    for code, label in (("en", "English"), ("uk", "Українська")):
+        if code != "en" and code not in record.get("translations", {}): continue
+        current = ' aria-current="page"' if code == lang else ""
+        links.append(f'<a href="{E(locale_url(record, code), quote=True)}" hreflang="{code}" lang="{code}"{current}>{label}</a>')
+    return '<nav class="language-switch" aria-label="Language">' + '<span aria-hidden="true"> · </span>'.join(links) + '</nav>'
+
+def entry_html(record, preview=False, adjacent=(None, None), lang="en"):
+    source_record = record
+    record = localized_record(record, lang)
     kind, title = record.get("type", "post"), inferred_title(record)
     published, updated = record.get("publishedAt") or record.get("createdAt") or now(), record.get("updatedAt", "")
-    meta = f'<time datetime="{E(published, quote=True)}">{E(display_date(published))}</time> · {reading_time(record)} min read'
-    if updated and parse_date(updated) > parse_date(published) + dt.timedelta(minutes=1): meta += f' · Edited <time datetime="{E(updated, quote=True)}">{E(display_date(updated))}</time>'
+    read_label = "хв читання" if lang == "uk" else "min read"
+    edited_label = "Оновлено" if lang == "uk" else "Edited"
+    kind_label = "Стаття" if lang == "uk" and kind == "article" else ("Допис" if lang == "uk" else kind.title())
+    meta = f'<time datetime="{E(published, quote=True)}">{E(display_date(published, lang))}</time> · {reading_time(record)} {read_label}'
+    if updated and parse_date(updated) > parse_date(published) + dt.timedelta(minutes=1): meta += f' · {edited_label} <time datetime="{E(updated, quote=True)}">{E(display_date(updated, lang))}</time>'
     if kind == "article":
         subtitle = f'<p class="post-description">{E(record.get("subtitle", ""))}</p>' if record.get("subtitle") else ""
-        header = f'<header class="entry-header"><p class="entry-kind">Article</p><h1>{E(title)}</h1>{subtitle}<p class="post-meta">{meta}</p></header>'
+        header = f'<header class="entry-header"><p class="entry-kind">{kind_label}</p><h1>{E(title)}</h1>{subtitle}<p class="post-meta">{meta}</p></header>'
         if record.get("coverMediaId"): header += image_html(record, record["coverMediaId"], "wide", preview=preview)
-        body = '<div class="article-content">' + "".join(block_html(record, b, preview) for b in record.get("blocks", [])) + "</div>"
+        body = '<div class="article-content">' + "".join(block_html(record, b, preview, lang) for b in record.get("blocks", [])) + "</div>"
         headings = [b for b in record.get("blocks", []) if b.get("type") == "heading"]
-        if len(headings) >= 3: body = '<nav class="article-toc" aria-label="On this page"><h2>On this page</h2>' + "".join(f'<a href="#{E(slugify(b.get("text", "")), quote=True)}">{E(b.get("text", ""))}</a>' for b in headings) + "</nav>" + body
+        toc_label = "На цій сторінці" if lang == "uk" else "On this page"
+        if len(headings) >= 3: body = f'<nav class="article-toc" aria-label="{toc_label}"><h2>{toc_label}</h2>' + "".join(f'<a href="#{E(slugify(b.get("text", "")), quote=True)}">{E(b.get("text", ""))}</a>' for b in headings) + "</nav>" + body
     else:
         show_title = bool(record.get("title", "").strip())
-        header = f'<header class="entry-header post-entry-header"><p class="entry-kind">Post</p>{f"<h1>{E(title)}</h1>" if show_title else ""}<p class="post-meta">{meta}</p></header>'
+        header = f'<header class="entry-header post-entry-header"><p class="entry-kind">{kind_label}</p>{f"<h1>{E(title)}</h1>" if show_title else ""}<p class="post-meta">{meta}</p></header>'
         parts = []
         if record.get("text"): parts.append(f'<div class="post-copy">{markdown(record["text"])}</div>')
-        if record.get("originalThought"): parts.append(original(record["originalThought"]))
+        if record.get("originalThought"): parts.append(original(record["originalThought"], lang))
         if record.get("imageIds"): parts.append(f'<div class="post-gallery" data-count="{len(record["imageIds"])}">' + "".join(image_html(record, item, preview=preview) for item in record["imageIds"]) + "</div>")
         if record.get("link"): parts.append(f'<p class="post-link"><a href="{E(safe_url(record["link"]), quote=True)}">{E(record["link"])}</a></p>')
         body = "".join(parts)
@@ -175,23 +211,26 @@ def entry_html(record, preview=False, adjacent=(None, None)):
         for label, item in (("Previous", previous), ("Next", following)):
             if item: neighbors += f'<a href="/blog/{E(item["slug"], quote=True)}/"><small>{label}</small>{E(inferred_title(item))}</a>'
         neighbors += "</nav>"
-    return f'<article class="blog-entry blog-{kind}" data-entry-type="{kind}">{header}{body}</article>{neighbors}'
+    return language_switch(source_record, lang) + f'<article class="blog-entry blog-{kind}" data-entry-type="{kind}">{header}{body}</article>{neighbors}'
 
-def shell(title, description, body, canonical, image="", record=None, scripts=()):
+def shell(title, description, body, canonical, image="", record=None, scripts=(), lang="en", alternates=None):
     home = (ROOT / "index.html").read_text()
     header = re.search(r'<header class="site-header">.*?</header>', home, re.S).group(0)
     header = header.replace('href="#home"', 'href="/"').replace('href="#story"', 'href="/#story"').replace('href="#contact"', 'href="/#contact"').replace('href="projects/', 'href="/projects/').replace('href="about/"', 'href="/about/"').replace('src="BA_new_logo', 'src="/BA_new_logo')
     header = header.replace('<a class="nav-link" href="/blog/">Blog</a>', '<a class="nav-link active" href="/blog/">Blog</a>')
     social = image or SITE_URL + "/site_media/BA_previewcard.png"
-    meta = f'<meta name="description" content="{E(description, quote=True)}"><link rel="canonical" href="{E(canonical, quote=True)}"><meta property="og:site_name" content="BA"><meta property="og:type" content="{("article" if record else "website")}"><meta property="og:title" content="{E(title, quote=True)}"><meta property="og:description" content="{E(description, quote=True)}"><meta property="og:url" content="{E(canonical, quote=True)}"><meta property="og:image" content="{E(social, quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(title, quote=True)}"><meta name="twitter:description" content="{E(description, quote=True)}"><meta name="twitter:image" content="{E(social, quote=True)}"><link rel="alternate" type="application/rss+xml" title="BA Blog" href="{SITE_URL}/blog/feed.xml">'
+    alternate_meta = "".join(f'<link rel="alternate" hreflang="{code}" href="{E(url, quote=True)}">' for code, url in (alternates or {}).items())
+    if alternates and "en" in alternates: alternate_meta += f'<link rel="alternate" hreflang="x-default" href="{E(alternates["en"], quote=True)}">'
+    og_locale = "uk_UA" if lang == "uk" else "en_US"
+    meta = f'<meta name="description" content="{E(description, quote=True)}"><link rel="canonical" href="{E(canonical, quote=True)}">{alternate_meta}<meta property="og:site_name" content="BA"><meta property="og:type" content="{("article" if record else "website")}"><meta property="og:locale" content="{og_locale}"><meta property="og:title" content="{E(title, quote=True)}"><meta property="og:description" content="{E(description, quote=True)}"><meta property="og:url" content="{E(canonical, quote=True)}"><meta property="og:image" content="{E(social, quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(title, quote=True)}"><meta name="twitter:description" content="{E(description, quote=True)}"><meta name="twitter:image" content="{E(social, quote=True)}"><link rel="alternate" type="application/rss+xml" title="BA Blog" href="{SITE_URL}/blog/feed.xml">'
     structured = ""
     if record:
         fingerprint = hashlib.sha256(json.dumps(record, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
         meta += f'<meta name="ba-content-id" content="{fingerprint}"><meta property="article:published_time" content="{E(record.get("publishedAt", ""), quote=True)}">'
-        schema = {"@context":"https://schema.org","@type":"Article" if record["type"] == "article" else "BlogPosting","headline":inferred_title(record),"description":description,"datePublished":record.get("publishedAt"),"dateModified":record.get("updatedAt") or record.get("publishedAt"),"mainEntityOfPage":canonical,"author":{"@type":"Person","name":"Ivan Kudrenko","url":SITE_URL+"/about/"},"publisher":{"@type":"Organization","name":"BA","url":SITE_URL},"image":social}
+        schema = {"@context":"https://schema.org","@type":"Article" if record["type"] == "article" else "BlogPosting","headline":inferred_title(record),"description":description,"inLanguage":lang,"datePublished":record.get("publishedAt"),"dateModified":record.get("updatedAt") or record.get("publishedAt"),"mainEntityOfPage":canonical,"author":{"@type":"Person","name":"Ivan Kudrenko","url":SITE_URL+"/about/"},"publisher":{"@type":"Organization","name":"BA","url":SITE_URL},"image":social}
         structured = '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     script_tags = "".join(f'<script src="{E(src, quote=True)}" defer></script>' for src in scripts)
-    return f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{E(title)} — BA</title>{meta}<link rel="icon" href="/BA_new_favicon.svg"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/blog/blog.css"><script src="/script.js" defer></script>{script_tags}{structured}</head><body class="blog-page">{header}<main class="container blog-main">{body}</main><footer class="site-footer"><div class="container footer-inner"><p>© {dt.date.today().year} Ivan Kudrenko</p><p>BA · software, devices, experiments</p></div></footer></body></html>'
+    return f'<!DOCTYPE html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{E(title)} — BA</title>{meta}<link rel="icon" href="/BA_new_favicon.svg"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/blog/blog.css"><link rel="stylesheet" href="/blog/language.css"><script src="/script.js" defer></script>{script_tags}{structured}</head><body class="blog-page">{header}<main class="container blog-main">{body}</main><footer class="site-footer"><div class="container footer-inner"><p>© {dt.date.today().year} Ivan Kudrenko</p><p>BA · software, devices, experiments</p></div></footer></body></html>'
 
 def normalize(record):
     record = dict(record); record.setdefault("schemaVersion", 2); record.setdefault("id", secrets.token_hex(12))
@@ -200,7 +239,7 @@ def normalize(record):
     record.setdefault("publishedAt", record.get("date") if record.get("status") == "published" else "")
     for key in ("title","subtitle","description","text","originalThought","link"): record.setdefault(key, "")
     for key in ("blocks","imageIds","media","tags","redirects"): record.setdefault(key, [])
-    record.setdefault("seo", {}); record.setdefault("layout", {}); record.setdefault("coverMediaId", "")
+    record.setdefault("seo", {}); record.setdefault("layout", {}); record.setdefault("translations", {}); record.setdefault("coverMediaId", "")
     if record.get("content") and not record["blocks"]:
         record["blocks"] = [{"id":secrets.token_hex(6),"type":"paragraph","text":record.pop("content")}]
         if record.get("originalThought"): record["blocks"].insert(0,{"id":secrets.token_hex(6),"type":"original-thought","text":record["originalThought"]}); record["originalThought"] = ""
@@ -215,6 +254,9 @@ def validate(record, publishing=False):
     if not re.fullmatch(r"[a-f0-9]{24}", record["id"]): raise ValueError("Invalid content ID.")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", record["slug"]) or record["slug"] in RESERVED: raise ValueError("Use a clean slug containing lowercase letters, numbers, and hyphens.")
     if not isinstance(record["blocks"], list) or not all(isinstance(b, dict) and b.get("type") in BLOCK_TYPES for b in record["blocks"]): raise ValueError("An Article block is invalid.")
+    if not isinstance(record["translations"], dict) or any(code not in SUPPORTED_TRANSLATIONS or not isinstance(value, dict) for code, value in record["translations"].items()): raise ValueError("A translation is invalid.")
+    for translation in record["translations"].values():
+        if "blocks" in translation and (not isinstance(translation["blocks"], list) or not all(isinstance(b, dict) and b.get("type") in BLOCK_TYPES for b in translation["blocks"])): raise ValueError("A translated Article block is invalid.")
     if publishing:
         if record["type"] == "post" and not any((record["text"].strip(),record["originalThought"].strip(),record["imageIds"],record["link"].strip())): raise ValueError("Write something or add a photo before publishing.")
         if record["type"] == "article" and (not record["title"].strip() or not record["blocks"]): raise ValueError("An Article needs a title and at least one block.")
@@ -259,10 +301,21 @@ def build():
     for index, record in enumerate(records):
         folder = blog/record["slug"]; folder.mkdir(exist_ok=True)
         previous = records[index+1] if index+1<len(records) else None; following = records[index-1] if index else None
-        canonical = f'{SITE_URL}/blog/{record["slug"]}/'; lead = media_map(record).get(record.get("coverMediaId") or ((record.get("imageIds") or [""])[0]),{})
+        alternates = {"en":locale_url(record)} | {code:locale_url(record, code) for code in record.get("translations", {})}
+        canonical = alternates["en"]; lead = media_map(record).get(record.get("coverMediaId") or ((record.get("imageIds") or [""])[0]),{})
         image = SITE_URL+lead.get("publicPath","") if lead.get("publicPath") else ""
-        body = '<a class="text-link back-to-blog" href="/blog/">← All writing</a>'+entry_html(record,adjacent=(previous,following))+'<div class="entry-actions"><button class="copy-link" type="button" data-copy-link>Copy link</button></div>'
-        (folder/"index.html").write_text(shell(record.get("seo",{}).get("title") or inferred_title(record),record.get("seo",{}).get("description") or excerpt(record),body,canonical,image,record,["/blog/public.js"])); (folder/".generated").touch(); changed |= {folder/"index.html",folder/".generated"}
+        body = '<a class="text-link back-to-blog" href="/blog/">← All writing</a>'+entry_html(record,adjacent=(previous,following))+'<div class="entry-actions"><button class="copy-link" type="button" data-copy-link data-copy-success="Link copied">Copy link</button></div>'
+        (folder/"index.html").write_text(shell(record.get("seo",{}).get("title") or inferred_title(record),record.get("seo",{}).get("description") or excerpt(record),body,canonical,image,record,["/blog/public.js"],alternates=alternates)); (folder/".generated").touch(); changed |= {folder/"index.html",folder/".generated"}
+        active_translations = set(record.get("translations", {}))
+        for marker in folder.glob("*/.generated"):
+            if marker.parent.name not in active_translations: shutil.rmtree(marker.parent); changed.add(marker.parent)
+        for lang in sorted(active_translations):
+            localized = localized_record(record, lang); translated_folder = folder/lang; translated_folder.mkdir(exist_ok=True)
+            back_label = "← Усі дописи" if lang == "uk" else "← All writing"
+            copy_label = "Скопіювати посилання" if lang == "uk" else "Copy link"
+            copied_label = "Посилання скопійовано" if lang == "uk" else "Link copied"
+            translated_body = f'<a class="text-link back-to-blog" href="/blog/">{back_label}</a>'+entry_html(record,lang=lang)+f'<div class="entry-actions"><button class="copy-link" type="button" data-copy-link data-copy-success="{copied_label}">{copy_label}</button></div>'
+            (translated_folder/"index.html").write_text(shell(localized.get("seo",{}).get("title") or inferred_title(localized),localized.get("seo",{}).get("description") or excerpt(localized),translated_body,alternates[lang],image,localized,["/blog/public.js"],lang,alternates)); (translated_folder/".generated").touch(); changed |= {translated_folder/"index.html",translated_folder/".generated"}
         for old in record.get("redirects",[]):
             target=blog/old; target.mkdir(exist_ok=True); destination=f'/blog/{record["slug"]}/'
             (target/"index.html").write_text(f'<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{SITE_URL}{destination}"><meta http-equiv="refresh" content="0; url={destination}"><title>Moved — BA</title></head><body><a href="{destination}">This writing moved.</a></body></html>'); (target/".generated").touch(); changed |= {target/"index.html",target/".generated"}
@@ -271,8 +324,14 @@ def build():
     body='<header class="blog-heading"><h1>Blog</h1><p>Thoughts, observations, things I’m building, and things I keep thinking about.</p></header>'+filters+f'<div class="blog-feed" aria-live="polite">{rows}</div><p class="blog-filter-empty" hidden>No writing in this format yet.</p>'
     (blog/"index.html").write_text(shell("Blog","Thoughts, observations, things I’m building, and things I keep thinking about.",body,SITE_URL+"/blog/",scripts=["/blog/public.js"])); (blog/"feed.xml").write_text(rss(records))
     pages=["/","/about/","/projects/activeview/","/projects/ba/","/projects/youtube/","/blog/"]
-    urls=[f'<url><loc>{SITE_URL}{p}</loc></url>' for p in pages]+[f'<url><loc>{SITE_URL}/blog/{r["slug"]}/</loc><lastmod>{parse_date(r.get("updatedAt") or r["publishedAt"]).date()}</lastmod></url>' for r in records]
-    (ROOT/"sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(urls)+"</urlset>\n"); (ROOT/"robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://baproj.com/sitemap.xml\n")
+    urls=[f'<url><loc>{SITE_URL}{p}</loc></url>' for p in pages]
+    for record in records:
+        lastmod = parse_date(record.get("updatedAt") or record["publishedAt"]).date()
+        alternates = {"en":locale_url(record)} | {code:locale_url(record, code) for code in record.get("translations", {})}
+        alternate_links = "".join(f'<xhtml:link rel="alternate" hreflang="{code}" href="{E(url, quote=True)}"/>' for code, url in alternates.items())
+        alternate_links += f'<xhtml:link rel="alternate" hreflang="x-default" href="{E(alternates["en"], quote=True)}"/>'
+        for url in alternates.values(): urls.append(f'<url><loc>{E(url)}</loc><lastmod>{lastmod}</lastmod>{alternate_links}</url>')
+    (ROOT/"sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'+"".join(urls)+"</urlset>\n"); (ROOT/"robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://baproj.com/sitemap.xml\n")
     changed |= {blog/"index.html",blog/"feed.xml",ROOT/"sitemap.xml",ROOT/"robots.txt"}
     home=ROOT/"index.html"; text=home.read_text(); section='<!-- BLOG START --><section class="home-blog" id="blog"><div class="container"><header><h2>Blog</h2><a class="text-link" href="/blog/">View all posts →</a></header>'+(("".join(feed_row(r,True) for r in records[:3])) or '<p class="blog-empty">No posts yet. There will be thoughts here soon.</p>')+'</div></section><!-- BLOG END -->'
     text=re.sub(r'<!-- BLOG START -->.*?<!-- BLOG END -->',lambda _:section,text,flags=re.S) if '<!-- BLOG START -->' in text else text.replace('      <section class="contact-section"',section+'\n      <section class="contact-section"'); home.write_text(text); changed.add(home)

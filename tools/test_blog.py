@@ -38,6 +38,14 @@ class BlogFlow(unittest.TestCase):
         uploaded=self.action("upload",png,headers={"Content-Type":"image/png","X-Content-Id":article["id"],"X-Filename":"Screenshot.png"},raw=True)["value"]["media"]; uploaded["alt"]="One pixel test image"; article["media"]=[uploaded]; article["coverMediaId"]=uploaded["id"]
         result=self.action("publish",article); self.assertEqual(result["status"],200); public=result["value"]["post"]; self.assertTrue(public["media"][0]["variants"]); self.assertTrue((blog.PUBLIC_ASSETS/article["id"]).exists())
         page=(blog.ROOT/"blog/structured-article/index.html").read_text(); self.assertIn("application/ld+json",page); self.assertIn("srcset=",page); self.assertIn("One pixel test image",page)
+
+    def test_article_translation_has_equivalent_url_and_metadata(self):
+        article=self.post(); article.update({"id":"3"*24,"type":"article","title":"English title","slug":"bilingual-article","description":"English description","text":"","originalThought":"","blocks":[{"id":"en","type":"paragraph","text":"English copy."}],"translations":{"uk":{"title":"Українська назва","description":"Український опис","blocks":[{"id":"uk","type":"paragraph","text":"Український текст."}]}}})
+        result=self.action("publish",article); self.assertEqual(result["status"],200)
+        english=(blog.ROOT/"blog/bilingual-article/index.html").read_text(); ukrainian=(blog.ROOT/"blog/bilingual-article/uk/index.html").read_text(); sitemap=(blog.ROOT/"sitemap.xml").read_text()
+        self.assertIn('<html lang="en">',english); self.assertIn('hreflang="uk"',english); self.assertIn("Українська",english)
+        self.assertIn('<html lang="uk">',ukrainian); self.assertIn("Український текст.",ukrainian); self.assertIn('content="uk_UA"',ukrainian); self.assertIn('"inLanguage": "uk"',ukrainian)
+        self.assertIn("https://baproj.com/blog/bilingual-article/uk/",sitemap); self.assertIn('hreflang="x-default"',sitemap)
     def test_url_and_schema_guards(self):
         self.assertEqual(blog.safe_url("javascript:alert(1)"),"#"); self.assertNotIn("javascript:",blog.inline("[unsafe](javascript:alert(1))")); self.assertIn("&lt;script&gt;",blog.markdown("<script>alert(1)</script>"))
         post=self.post(); post["slug"]="../escape"; self.assertEqual(self.action("publish",post)["status"],400)

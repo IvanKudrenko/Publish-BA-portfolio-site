@@ -23,6 +23,8 @@ Both formats appear together at `/blog/`, use permanent `/blog/<slug>/` URLs, an
 
 Portable JSON is the canonical format. Version 2 records contain `id`, `type`, `title`, `subtitle`, `slug`, `description`, `text`, `originalThought`, `blocks`, `imageIds`, `media`, `coverMediaId`, `publishedAt`, `updatedAt`, `createdAt`, `tags`, `seo`, `layout`, and `redirects`.
 
+An article may also contain a `translations` object keyed by locale. A translation stores its localized `title`, `description`, `blocks`, and optional `seo` values beside the English source. English keeps the canonical `/blog/<slug>/` URL; Ukrainian uses `/blog/<slug>/uk/`. The builder adds the language switch, `lang`, `hreflang`, canonical, Open Graph locale, structured data, and sitemap alternates automatically.
+
 - Private drafts and draft media: `.blog-private/posts/` and `.blog-private/media/`. The entire directory is ignored by Git and blocked by the local server.
 - Published source: `content/posts/<id>.json`.
 - Published media: `blog/assets/<id>/`.

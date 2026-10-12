@@ -22,7 +22,7 @@
   document.querySelector("[data-copy-link]")?.addEventListener("click", async (event) => {
     try {
       await navigator.clipboard.writeText(location.href);
-      event.currentTarget.textContent = "Link copied";
+      event.currentTarget.textContent = event.currentTarget.dataset.copySuccess || "Link copied";
     } catch {
       event.currentTarget.textContent = location.href;
     }

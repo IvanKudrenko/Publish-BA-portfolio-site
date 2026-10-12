@@ -17,7 +17,7 @@ BLOCK_TYPES = {"paragraph", "heading", "quote", "original-thought", "callout", "
 SUPPORTED_TRANSLATIONS = {"uk"}
 E = html.escape
 
-def now(): return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+def now(): return dt.datetime.now().astimezone().replace(microsecond=0).isoformat()
 def parse_date(value):
     if not value: return dt.datetime.now(dt.timezone.utc)
     try: parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))

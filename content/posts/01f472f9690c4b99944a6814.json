@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "id": "01f472f9690c4b99944a6814",
+  "type": "article",
+  "status": "published",
+  "title": "What I Choose to Leave Out",
+  "slug": "what-i-choose-to-leave-out",
+  "description": "Why I like tools with a clear purpose, and how that shapes the features I consider adding to BlinkClip.",
+  "text": "",
+  "originalThought": "",
+  "link": "",
+  "blocks": [
+    {
+      "id": "a2666fd6e3ad",
+      "type": "paragraph",
+      "text": "I like simple things with a clear purpose. A notebook and a pen are a good example. I pick them up when I want to write, and I can start writing. I do not need to open an app, choose a new note, or check which tool is selected.\n\nThere is also something I like about the physical experience. I feel the pen moving across the page. The notebook does not need to imitate writing on paper. It already is paper, and I know what to do with it.\n\nI love using my tablet, too. I write math and literature notes on it at school, and I use Notability. Changing colors, highlighting, and recording audio are useful features. At one point, I thought a tablet could completely replace paper. I do not quite think that anymore.\n\nSometimes I want all those possibilities. Sometimes I just want to catch a thought before it disappears.\n\nOn a tablet, the path to writing can involve a few small decisions. I need to open the right app, find the right place, and choose the right tool. Sometimes I accidentally switch to another function. Sometimes an interface changes, and I have to work out where something has moved. None of these things has to be a big problem on its own. But while I am doing them, I can lose the thought I wanted to write down.\n\nFor me, the notebook leaves less friction between a thought and its record. That is part of why I enjoy it. It has a clear job, and it does that job without having to make room for many unrelated things.\n\nThis makes me think about the features I would rather leave out of a product.\n\nAn extra feature can make sense. An eraser on a pencil is probably my favorite example. When I write with a pencil, I may want to erase something. Usually, that would mean picking up a separate eraser. Having one on the pencil supports what I am already doing. A pen that lets me change colors can be useful for the same reason.\n\nThese things have more than one function, but the functions belong together.\n\nNow imagine an eraser with a speaker. It could play music, but why would I need music to come from the thing I use to erase? Or imagine a flashlight on headphones, or a pen that also works as scissors. There might be a particular situation where one of these combinations is useful. But adding a possibility does not explain why it belongs there.\n\nCombining functions can also mean making compromises. I want to understand what the main purpose loses when something else is added. Does the object become harder to use? Do I have to learn more before I can do something simple? Does a new feature pull me toward a different activity?\n\nThe same questions apply to software. A feature may be useful, but its controls and settings can still make the main action harder to reach. I appreciate extra tools when they follow the same path as what I am already doing, remain optional, and do not make the basic action more complicated.\n\nI keep returning to this while building BlinkClip, my app for batch video tasks. I am still deciding how universal it should become. Adding a finished intro to a video has a clear purpose. But should the app also include a tool for creating that intro? That could be useful, but it would bring another set of tools, settings, and decisions into the app. I have not settled that question yet.\n\nFor BA, this is becoming part of how I want to approach design. I try to start with a problem and then find a feature that addresses it. If I start with a feature, I can always imagine some way to use it. That alone does not tell me whether it should be part of the product.\n\nI want each addition to have a clear reason to be there. I also want to notice when keeping something out allows the main purpose to work better.\n\nThat is what I like about the notebook and pen. They are ready for the thing I picked them up to do. When I consider a new feature, I want to ask: does this help someone continue what they came here to do, and what will they have to give up for it?\n\n*Based on my own notes and answers. Compiled and edited with AI assistance.*"
+    }
+  ],
+  "imageIds": [],
+  "coverMediaId": "",
+  "media": [],
+  "tags": [
+    "design",
+    "BlinkClip"
+  ],
+  "seo": {},
+  "layout": {},
+  "redirects": [],
+  "createdAt": "2026-10-12T02:14:38Z",
+  "updatedAt": "",
+  "publishedAt": "2026-10-12T02:14:38Z",
+  "translations": {
+    "uk": {
+      "title": "Що я вирішую не додавати",
+      "description": "Чому мені подобаються інструменти з ясною метою і як це впливає на функції, які я розглядаю для BlinkClip.",
+      "blocks": [
+        {
+          "id": "edc2ae2f763f",
+          "type": "paragraph",
+          "text": "Мені подобаються прості речі з ясною метою. Блокнот і ручка — хороший приклад. Я беру їх, коли хочу щось записати, і можу одразу почати. Мені не потрібно відкривати додаток, обирати нову нотатку чи перевіряти, який інструмент увімкнений.\n\nМені також подобається саме фізичне відчуття. Я відчуваю, як ручка рухається по сторінці. Блокноту не потрібно імітувати письмо на папері. Він уже є папером, і я знаю, що з ним робити.\n\nЯ також дуже люблю користуватися планшетом. Пишу на ньому математику й нотатки з літератури у школі та користуюся Notability. Зміна кольору, виділення маркером і запис аудіо — корисні функції. Колись я думав, що планшет може повністю замінити папір. Зараз я вже не зовсім так вважаю.\n\nІноді мені потрібні всі ці можливості. А іноді я просто хочу записати думку, поки вона не загубилася.\n\nНа планшеті шлях до запису може вимагати кількох маленьких рішень. Треба відкрити правильний додаток, знайти потрібне місце й обрати інструмент. Іноді я випадково перемикаюся на іншу функцію. Іноді інтерфейс змінюється, і треба розібратися, куди щось перенесли. Кожна з цих речей окремо не обов’язково є великою проблемою. Але поки я все це роблю, можу втратити думку, яку хотів записати.\n\nДля мене блокнот залишає менше тертя між думкою та її записом. Це одна з причин, чому мені подобається ним користуватися. У нього є ясна задача, і він справляється з нею, не намагаючись умістити багато непов’язаних речей.\n\nЦе змушує мене думати про функції, які я волів би не додавати до продукту.\n\nДодаткова функція може бути доречною. Ластик на олівці — напевно, мій улюблений приклад. Коли я пишу олівцем, можу захотіти щось стерти. Зазвичай для цього треба взяти окремий ластик. Якщо він уже є на олівці, це підтримує те, що я й так роблю. Ручка, яка дозволяє змінювати колір, може бути корисною з тієї самої причини.\n\nУ цих речей більше однієї функції, але їхні функції пов’язані між собою.\n\nА тепер уявімо ластик із динаміком. Він міг би грати музику, але навіщо мені музика з предмета, яким я стираю? Або ліхтарик на навушниках чи ручку, яка ще й працює як ножиці. Можливо, є конкретна ситуація, у якій якесь із цих поєднань корисне. Але сама можливість щось додати ще не пояснює, чому воно має бути саме тут.\n\nПоєднання функцій також може вимагати компромісів. Я хочу розуміти, що втрачає основна мета, коли додається щось інше. Чи стає предмет складнішим у користуванні? Чи потрібно більше розбиратися, перш ніж зробити просту річ? Чи нова функція спрямовує мене до іншого заняття?\n\nТі самі питання стосуються програм. Функція може бути корисною, але її кнопки й налаштування все одно можуть ускладнити доступ до основної дії. Мені подобаються додаткові інструменти, коли вони йдуть тим самим шляхом, що й моє заняття, залишаються необов’язковими й не роблять базову дію складнішою.\n\nЯ постійно повертаюся до цього, коли розробляю BlinkClip, свою програму для пакетної роботи з відео. Я ще визначаю, наскільки універсальною вона має стати. Додати готове інтро до відео — зрозуміла задача. Але чи має програма також містити інструмент для створення цього інтро? Це могло б бути корисно, проте додало б ще один набір інструментів, налаштувань і рішень. Я поки не визначився.\n\nДля BA це стає частиною того, як я хочу підходити до дизайну. Я намагаюся почати з проблеми, а потім знайти функцію, яка її вирішує. Якщо почати з функції, я завжди можу уявити якесь застосування. Але цього ще недостатньо, щоб зрозуміти, чи має вона бути частиною продукту.\n\nЯ хочу, щоб кожне доповнення мало ясну причину існувати. І хочу помічати, коли відмова від нього дозволяє основній задачі працювати краще.\n\nСаме це мені подобається в блокноті та ручці. Вони готові до того, заради чого я їх узяв. Розглядаючи нову функцію, я хочу запитати: чи допомагає вона людині продовжити те, заради чого вона прийшла, і чим їй доведеться за це поступитися?\n\n*На основі моїх власних записів і відповідей. Текст скомпільовано та відредаговано за допомогою AI.*"
+        }
+      ],
+      "seo": {}
+    }
+  },
+  "subtitle": "",
+  "hasPrivateChanges": false,
+  "savedAt": "2026-10-12T02:14:38Z"
+}

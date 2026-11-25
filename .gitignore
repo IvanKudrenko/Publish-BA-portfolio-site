@@ -53,6 +53,7 @@ site_media/*
 YouTube_media/*
 
 BlinkClip_media/*.png
+!BlinkClip_media/blinkclip-ipad-actions-framed.png
 BlinkClip_media/logo_preset/blinkclip-favicon-64.png
 
 ActiView_media/*.PNG
